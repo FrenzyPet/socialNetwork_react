@@ -1,34 +1,12 @@
-.app-wrapper {
+body {
+  box-sizing: border-box;
+}
+
+.wrapper {
   display: grid;
   width: 1200px;
   margin: 0 auto;
   grid-template-columns: 3fr 9fr;
   grid-template-rows: 120px 1fr;
   gap: 10px;
-}
-
-.main-header {
-  grid-column: span 2;
-  border: 1px solid grey;
-  background-color: rgb(56, 95, 56);
-  border-radius: 10px;
-  padding: 10px;
-}
-
-.navigation {
-  border: 1px solid grey;
-  background-color: rgb(56, 95, 56);
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.content {
-  border: 1px solid grey;
-  border-radius: 10px;
-  padding: 20px;
-}
-
-.image-profile {
-  object-fit: cover;
-  width: 100%;
 }

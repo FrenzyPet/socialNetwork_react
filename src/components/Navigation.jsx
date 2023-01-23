@@ -1,20 +1,22 @@
+import classes from './Navigation.module.css'
+
 const Navigation = () => {
   return (
-    <nav className='navigation'>
-        <ul>
-          <li>
+    <nav className={classes.navigation}>
+        <ul className={classes.list}>
+          <li className={classes.item}>
             <a>Profile</a>
           </li>
-          <li>
+          <li className={classes.item}>
             <a>Messages</a>
           </li>
-          <li>
+          <li className={classes.item}>
             <a>News</a>
           </li>
-          <li>
+          <li className={classes.item}>
             <a>Music</a>
           </li>
-          <li>
+          <li className={classes.item}>
             <a>Settings</a>
           </li>
         </ul>
