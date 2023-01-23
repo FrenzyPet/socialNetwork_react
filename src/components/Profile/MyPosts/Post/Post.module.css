@@ -1,0 +1,16 @@
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.item__avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #FFC340;
+  margin-right: 30px;
+}
+
+.item__text {
+  font-size: 18px;
+}

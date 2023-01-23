@@ -1,5 +1,7 @@
 body {
+  padding: 10px;
   box-sizing: border-box;
+  background-color: #cc78fa28;
 }
 
 .wrapper {

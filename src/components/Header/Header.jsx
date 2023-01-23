@@ -3,7 +3,7 @@ import classes from './Header.module.css'
 const Header = () => {
   return (
     <header className={classes.header}>
-      <img src="https://spng.pngfind.com/pngs/s/4-48076_visual-website-optimizer-visual-website-optimizer-logo-hd.png" width="100" height="100"></img>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Wikimedia-logo.png/600px-Wikimedia-logo.png" width="70" height="70"></img>
     </header>
   )
 }
