@@ -4,9 +4,9 @@ import Post from './Post/Post';
 const MyPosts = () => {
   return (
     <ul className={classes.posts}>
-      <Post />
-      <Post />
-      <Post />
+      <Post message='Please, kill me!'/>
+      <Post message='Everething fucked me.'/>
+      <Post message='I dont want to live =('/>
     </ul>
   )
 }
