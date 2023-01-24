@@ -4,13 +4,28 @@
   padding: 20px;
 }
 
-.list {
+.navigation__list {
   padding: 0;
   margin: 0;
 }
 
-.item {
+.navigation__item {
   font-size: 20px;
-  color: white;
   list-style-type: none;
+}
+
+.navigation__link {
+  display: block;
+  padding: 5px;
+  color: white;
+  text-decoration: none;
+}
+
+.navigation__link:hover {
+  border-radius: 5px;
+  background-color:rgba(0, 153, 125, 0.7);
+}
+
+.active {
+  color: #00669a;
 }
