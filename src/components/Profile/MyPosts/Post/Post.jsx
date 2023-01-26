@@ -7,6 +7,7 @@ const Post = (props) => {
         <img className={classes.item__avatarImage} src='https://bipbap.ru/wp-content/uploads/2022/11/1652235714_41-kartinkin-net-p-prikolnie-kartinki-dlya-stima-44.jpg'></img>
       </div>
       <p className={classes.item__text}>{props.message}</p>
+      <p className={classes.item__likes}>Likes: {props.likesCount}</p>
     </li>
   )
 }

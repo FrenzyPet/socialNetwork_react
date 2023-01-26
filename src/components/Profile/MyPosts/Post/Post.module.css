@@ -25,3 +25,19 @@
   font-size: 18px;
   margin: 0;
 }
+
+.item__likes {
+  margin-left: auto;
+  position: relative;
+}
+
+/* .item__likes::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  background-repeat: no-repeat;
+  z-index: 20;
+} */

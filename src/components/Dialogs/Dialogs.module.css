@@ -1,4 +1,26 @@
 .dialogs {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  border: 4px solid rgba(0, 153, 125, 0.7);
+  border-radius: 10px;
+  background-color: white;
+}
+
+.dialogs__item {
+  list-style-type: none;
+}
+
+.dialogs__list {
+  padding: 10px;
+  margin: 0;
+  border-right: 4px solid rgba(0, 153, 125, 0.7);
+}
+
+.dialogs__content {
+  padding: 10px;
+  margin: 0;
+}
+
+.dialogs__message {
+  list-style-type: none;
 }

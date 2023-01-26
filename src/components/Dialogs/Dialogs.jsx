@@ -1,5 +1,17 @@
 import { NavLink } from 'react-router-dom';
-import classes from './Dialogs.module.css'
+import classes from './Dialogs.module.css';
+
+const dialogsData = [
+  { name: 'Artem', id: '001'},
+  { name: 'Andrey', id: '002'},
+  { name: 'Pavel', id: '003'}
+];
+
+const messagesData = [
+  { text: 'Привет', id: '0001'},
+  { text: 'Сможешь скинуть на карту 5к рублей?', id: '0002'},
+  { text: 'Очень нужно, срочно', id: '0003'}
+];
 
 const DialogItem = (props) => {
   return (
@@ -24,9 +36,9 @@ const Dialogs = () => {
         <DialogItem name='Pavel' id='003'/>
       </ul>
       <ul className={classes.dialogs__content}>
-        <Message text='Привет'/>
-        <Message text='Сможешь скинуть на карту 5к рублей?'/>
-        <Message text='Очень нужно, срочно'/>
+        <Message id='' text='Привет'/>
+        <Message id='' text='Сможешь скинуть на карту 5к рублей?'/>
+        <Message id='' text='Очень нужно, срочно'/>
       </ul>
     </div>
   )
