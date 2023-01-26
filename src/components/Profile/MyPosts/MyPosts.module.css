@@ -1,4 +1,27 @@
+.newPost_text {
+  display: block;
+  width: 100%;
+  appearance: none;
+  border: 4px solid rgba(0, 153, 125, 0.7);
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.button {
+  width: auto;
+  padding: 5px 10px;
+  color: white;
+  background-color: rgba(0, 153, 125, 0.7);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .posts {
   padding: 0;
   list-style-type: none;
+  display: grid;
+  gap: 10px;
 }

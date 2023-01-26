@@ -1,16 +1,27 @@
 .item {
   display: flex;
   align-items: center;
+  width: 50%;
+  padding: 10px;
+  border: 1px solid rgba(0, 153, 125, 0.7);
+  border-radius: 5px;
+  background-color: white;
 }
 
-.item__avatar {
+.item__avatarWrapper {
   width: 30px;
-  height: 30px;
+  height: auto;
   border-radius: 50%;
-  background-color: #FFC340;
   margin-right: 15px;
+}
+
+.item__avatarImage {
+  width: 100%;
+  border: 2px solid rgba(0, 153, 125, 0.7);
+  border-radius: 50%;
 }
 
 .item__text {
   font-size: 18px;
+  margin: 0;
 }
