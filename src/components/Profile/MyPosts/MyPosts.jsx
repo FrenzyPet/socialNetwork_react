@@ -7,6 +7,8 @@ const postsData = [
   { message: 'I dont want to live =(', id: '0003', likeCount: 30}
 ];
 
+let postsElements = postsData.map((item) => (<Post id={item.id} message={item.message} likesCount={item.likesCount} />));
+
 const MyPosts = () => {
   return (
     <div>
@@ -15,11 +17,8 @@ const MyPosts = () => {
         <button className={classes.button} type='button'>Опубликовать</button>
       </div>
       <ul className={classes.posts}>
-        <Post id='' message='Please, kill me!' likesCount='10' />
-        <Post id='' message='Everything fucked me.' likesCount='20' />
-        <Post id='' message='I dont want to live =(' likesCount='30' />
+        {postsElements}
       </ul>
-
     </div>
   )
 }

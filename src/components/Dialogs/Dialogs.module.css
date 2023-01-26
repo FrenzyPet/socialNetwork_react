@@ -10,6 +10,11 @@
   list-style-type: none;
 }
 
+.dialogs__link {
+  text-decoration: none;
+  color: black;
+}
+
 .dialogs__list {
   padding: 10px;
   margin: 0;

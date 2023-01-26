@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.button:hover {
+  background-color: rgba(0, 153, 125, 0.9);
+}
+
 .posts {
   padding: 0;
   list-style-type: none;
