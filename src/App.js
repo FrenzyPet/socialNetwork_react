@@ -14,7 +14,7 @@ const App = (props) => {
         <Header />
         <Navigation />
         <Routes>
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/' element={<Profile />} />
           <Route path='/dialogs/*' element={<Dialogs />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
