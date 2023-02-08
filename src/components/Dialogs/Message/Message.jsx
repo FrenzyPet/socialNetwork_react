@@ -1,6 +1,4 @@
 import classes from './Message.module.css';
-import { messagesData } from '../../../state';
-
 
 const Message = (props) => {
   return (
@@ -8,4 +6,4 @@ const Message = (props) => {
     )
   }
   
-export { Message, messagesData };
+export default Message;

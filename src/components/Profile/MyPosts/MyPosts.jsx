@@ -1,10 +1,11 @@
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';
-import { postsData } from '../../../state';
 
-let postsElements = postsData.map((item) => (<Post id={item.id} message={item.message} likesCount={item.likeCount} />));
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+  
+  let postsElements = props.postsData.map((item) => (<Post id={item.id} message={item.message} likesCount={item.likeCount} />));
+
   return (
     <div>
       <div className={classes.newPost}>

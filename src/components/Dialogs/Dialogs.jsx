@@ -1,11 +1,10 @@
 import classes from './Dialogs.module.css';
-import { DialogItem, dialogsData } from './DialogsItem/DialogsItem';
-import { Message, messagesData } from './Message/Message';
+import DialogItem from './DialogsItem/DialogsItem';
+import Message from './Message/Message';
 
-let dialogsElements = dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} />));
-let messagesElements = messagesData.map((item) => (<Message text={item.text} id={item.id} />));
-
-const Dialogs = () => {
+const Dialogs = ({ messagesPage }) => {
+  let dialogsElements = messagesPage.dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} />));
+  let messagesElements = messagesPage.messagesData.map((item) => (<Message text={item.text} id={item.id} />));
   return (
     <div className={classes.dialogs}>
       <ul className={classes.dialogs__list}>

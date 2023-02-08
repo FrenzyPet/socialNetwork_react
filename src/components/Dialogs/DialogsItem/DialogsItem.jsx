@@ -1,7 +1,5 @@
 import classes from './DialogsItem.module.css';
 import { NavLink } from 'react-router-dom';
-import { dialogsData } from '../../../state';
-
 
 const DialogItem = (props) => {
   return (
@@ -11,4 +9,4 @@ const DialogItem = (props) => {
   )
 }
 
-export { DialogItem, dialogsData };
+export default DialogItem;

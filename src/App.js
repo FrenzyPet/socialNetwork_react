@@ -8,14 +8,14 @@ import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings';
 import { Route, Routes } from 'react-router-dom';
 
-const App = (props) => {
+const App = ({ state }) => {
   return (
       <div className={classes.wrapper}>
         <Header />
         <Navigation />
         <Routes>
-          <Route path='/' element={<Profile />} />
-          <Route path='/dialogs/*' element={<Dialogs />} />
+          <Route path='/' element={<Profile profilePage={state.profilePage}/>} />
+          <Route path='/dialogs/*' element={<Dialogs messagesPage={state.messagesPage}/>} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
