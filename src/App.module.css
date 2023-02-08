@@ -9,6 +9,6 @@ body {
   width: 1200px;
   margin: 0 auto;
   grid-template-columns: 3fr 9fr;
-  grid-template-rows: 120px 1fr;
   gap: 10px;
+  grid-auto-flow: dense;
 }

@@ -7,13 +7,15 @@ import News from './components/News/News';
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings';
 import { Route, Routes } from 'react-router-dom';
+import Friends from './components/Friends/Friends';
 
 const App = ({ state }) => {
   return (
       <div className={classes.wrapper}>
         <Header />
         <Navigation />
-        <Routes>
+        <Friends />
+        <Routes className={classes.content}>
           <Route path='/' element={<Profile profilePage={state.profilePage}/>} />
           <Route path='/dialogs/*' element={<Dialogs messagesPage={state.messagesPage}/>} />
           <Route path='/news' element={<News />} />
