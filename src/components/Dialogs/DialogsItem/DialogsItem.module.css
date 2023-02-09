@@ -1,8 +1,23 @@
 .dialogs__item {
   list-style-type: none;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba(0, 153, 125, 0.7);
+}
+
+.dialogs__item:last-child {
+  border-bottom: 1px solid rgba(0, 153, 125, 0.7);
+}
+
+.dialogs__avatar {
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 .dialogs__link {
+  flex-grow: 1;
+  display: block;
+  padding: 5px 0;
   text-decoration: none;
   color: black;
 }
