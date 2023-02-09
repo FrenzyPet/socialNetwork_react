@@ -1,4 +1,6 @@
-import { rerender } from "../render";
+let rerender = () => {
+
+}
 
 const state = {
 
@@ -7,7 +9,8 @@ const state = {
       { message: 'Please, kill me!', id: 1, likeCount: 10},
       { message: 'Everything fucked me.', id: 2, likeCount: 20},
       { message: 'I dont want to live =(', id: 3, likeCount: 30}
-    ]
+    ],
+    newPost: ''
   },
 
   messagesPage: {
@@ -34,14 +37,25 @@ const state = {
 }
 
 
-export const addPostState = (textMessage) => {
+export const addPostState = () => {
   const newPost = {
-    message: textMessage,
+    message: state.profilePage.newPost,
     id: state.profilePage.postsData.length + 1,
     likeCount: 0
   }
   state.profilePage.postsData.push(newPost);
-  rerender(state);
+  state.profilePage.newPost = '';
+  rerender();
+}
+
+export const updateNewPostText = (textMessage) => {
+  state.profilePage.newPost = textMessage;
+  rerender();
+}
+
+export const subscriber = (observer) => {
+  rerender = observer;
+
 }
 
 export default state;
