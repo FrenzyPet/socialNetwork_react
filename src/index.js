@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import state, { addPostState, updateNewPostText, subscriber } from './redux/state';
+import store from './redux/state';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -11,11 +11,11 @@ const rerender = () => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App state={state} addPostState={addPostState} updateNewPostText={updateNewPostText}/>
+        <App state={store.getState()} addPostState={store.addPostState.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>
       </BrowserRouter>
     </React.StrictMode>
   );
 }
 
 rerender();
-subscriber(rerender);
+store.subscriber(rerender);
