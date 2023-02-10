@@ -29,32 +29,34 @@ const store = {
     }
   },
 
-  getState() {
-    return this._state;
-  },
-
   _callSubscriber() {
     console.log('State change');
   },
 
-  addPostState() {
-    const newPost = {
-      message: this._state.profilePage.newPost,
-      id: this._state.profilePage.postsData.length + 1,
-      likeCount: 0
-    }
-    this._state.profilePage.postsData.push(newPost);
-    this._state.profilePage.newPost = '';
-    this._callSubscriber();
+  getState() {
+    return this._state;
   },
-
-  updateNewPostText(textMessage) {
-    this._state.profilePage.newPost = textMessage;
-    this._callSubscriber();
-  },
-
+  
   subscriber(observer) {
     this._callSubscriber = observer;
+  },
+
+  dispatch(action) {
+    if (action.type === 'ADD-POST-STATE') {
+      const newPost = {
+        message: this._state.profilePage.newPost,
+        id: this._state.profilePage.postsData.length + 1,
+        likeCount: 0
+      }
+      this._state.profilePage.postsData.push(newPost);
+      this._state.profilePage.newPost = '';
+      this._callSubscriber();
+    };
+
+    if (action.type === 'UPDATE-NEW-POST-TEXT') {
+      this._state.profilePage.newPost = action.textMessage;
+      this._callSubscriber();
+    };
   }
 }
 

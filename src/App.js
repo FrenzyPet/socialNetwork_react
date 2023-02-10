@@ -9,14 +9,14 @@ import Settings from './components/Settings/Settings';
 import { Route, Routes } from 'react-router-dom';
 import MyFriends from './components/MyFriends/MyFriends';
 
-const App = ({ state, addPostState, updateNewPostText }) => {
+const App = ({ state, dispatch }) => {
   return (
       <div className={classes.wrapper}>
         <Header />
         <Navigation />
         <MyFriends friendsPage={state.friendsPage}/>
         <Routes>
-          <Route path='/' element={<Profile profilePage={state.profilePage} addPostState={addPostState} updateNewPostText={updateNewPostText}/>} />
+          <Route path='/' element={<Profile profilePage={state.profilePage} dispatch={dispatch}/>} />
           <Route path='/dialogs/*' element={<Dialogs messagesPage={state.messagesPage}/>} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
