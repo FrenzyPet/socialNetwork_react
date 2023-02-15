@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { addPost, addPostMessage } from '../../../redux/profile-slice';
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';
-import { addPost, addPostMessage } from '../../../redux/profile-slice';
 
 const MyPosts = () => {
   const [counter, setCounter] = useState(1);
