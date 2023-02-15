@@ -5,16 +5,7 @@
   grid-template-columns: 1fr 3fr;
   border: 4px solid rgba(0, 153, 125, 0.7);
   border-radius: 10px;
-  background-color: white;
-}
-
-.dialogs__item {
-  list-style-type: none;
-}
-
-.dialogs__link {
-  text-decoration: none;
-  color: black;
+  background-color: rgba(229, 229, 229, 0.3);
 }
 
 .dialogs__list {
@@ -28,6 +19,47 @@
   margin: 0;
 }
 
-.dialogs__message {
-  list-style-type: none;
+.dialogs__messageList {
+  padding: 5px;
+  border: 2px solid rgba(0, 153, 125, 0.7);
+  border-radius: 5px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.dialogs__newMessage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dialogs__newMessageText {
+  display: block;
+  appearance: none;
+  height: auto;
+  border: 2px solid rgba(0, 153, 125, 0.7);
+  border-radius: 5px;
+  padding: 3px 10px;
+  box-sizing: border-box;
+  resize: none;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.dialogs__newMessageText:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 2px 0 rgba(0, 153, 125, 0.9);
+}
+
+.dialogs__sendButton {
+  padding: 5px 10px;
+  color: white;
+  background-color: rgba(0, 153, 125, 0.7);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dialogs__sendButton:hover {
+  background-color: rgba(0, 153, 125, 0.9);
 }

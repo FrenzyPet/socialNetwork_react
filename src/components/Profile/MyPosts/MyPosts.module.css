@@ -9,10 +9,6 @@
   margin-bottom: 10px;
   resize: none;
 }
-/* 
-.newPost_text:focus {
-  box-shadow: inset 4px 4px 0 rgba(0, 153, 125, 0.9);
-} */
 
 .newPost_text:focus-visible {
   outline: none;

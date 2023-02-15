@@ -17,7 +17,7 @@ const App = ({ state, dispatch }) => {
         <MyFriends friendsPage={state.friendsPage}/>
         <Routes>
           <Route path='/' element={<Profile profilePage={state.profilePage} dispatch={dispatch}/>} />
-          <Route path='/dialogs/*' element={<Dialogs messagesPage={state.messagesPage}/>} />
+          <Route path='/dialogs/*' element={<Dialogs messagesPage={state.messagesPage} dispatch={dispatch}/>} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />

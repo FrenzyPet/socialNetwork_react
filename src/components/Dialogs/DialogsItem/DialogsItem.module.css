@@ -1,5 +1,4 @@
 .dialogs__item {
-  list-style-type: none;
   display: flex;
   align-items: center;
   border-top: 1px solid rgba(0, 153, 125, 0.7);
