@@ -20,6 +20,9 @@ const Dialogs = ({ messagesPage, dispatch }) => {
   return (
     <div className={classes.dialogs}>
       <div className={classes.dialogs__list}>
+        <div className={classes.dialogs__search}>
+          <input className={classes.dialogs__search__input} type="text" placeholder='Найти диалог' />
+        </div>
         { dialogsElements }
       </div>
       <div className={classes.dialogs__content}>
