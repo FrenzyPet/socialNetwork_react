@@ -1,20 +1,25 @@
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
-import { updateMessageTextActionCreator, sendMessageActionCreator } from '../../redux/message-reducer';
+import { addMessage, addTextMessage } from '../../redux/message-slice';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Dialogs = ({ messagesPage, dispatch }) => {
-  let dialogsElements = messagesPage.dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} />));
-  let messagesElements = messagesPage.messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine}/>));
-  let newMessageText = messagesPage.newMessageText;
+const Dialogs = () => {
+  const dispatch = useDispatch();
+
+  const { dialogsData, messagesData, newMessageText } = useSelector(state => state.messages)
+
+  let dialogsElements = dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} />));
+  let messagesElements = messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine}/>));
 
   const onSendButtonClick = () => {
-    dispatch(sendMessageActionCreator());
+    dispatch(addMessage());
   }
 
   const onNewMessageChange = (evt) => {
+    console.log('event', evt.target.value)
     let text = evt.target.value;
-    dispatch(updateMessageTextActionCreator(text));
+    dispatch(addTextMessage(text));
   }
 
   return (

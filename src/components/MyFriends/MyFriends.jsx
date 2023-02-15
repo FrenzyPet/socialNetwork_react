@@ -1,9 +1,10 @@
 import classes from './MyFriends.module.css';
 import Friend from './Friend/Friend';
+import { useSelector } from 'react-redux';
 
-const MyFriends = ({ friendsPage }) => {
-
-  const friendsElements = friendsPage.friendsData.map( (item) => (<Friend id={item.id} name={item.name} avatar={item.avatar}/>));
+const MyFriends = () => {
+  const friendsData = useSelector(state => state.friends.friendsData);
+  const friendsElements = friendsData.map( (item) => (<Friend id={item.id} name={item.name} avatar={item.avatar}/>));
 
   return (
     <section className={classes.friends}>

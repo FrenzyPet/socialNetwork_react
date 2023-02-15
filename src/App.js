@@ -9,15 +9,16 @@ import Settings from './components/Settings/Settings';
 import { Route, Routes } from 'react-router-dom';
 import MyFriends from './components/MyFriends/MyFriends';
 
-const App = ({ state, dispatch }) => {
+const App = () => {
+
   return (
       <div className={classes.wrapper}>
         <Header />
         <Navigation />
-        <MyFriends friendsPage={state.friendsPage}/>
+        <MyFriends />
         <Routes>
-          <Route path='/' element={<Profile profilePage={state.profilePage} dispatch={dispatch}/>} />
-          <Route path='/dialogs/*' element={<Dialogs messagesPage={state.messagesPage} dispatch={dispatch}/>} />
+          <Route path='/' element={<Profile />} />
+          <Route path='/dialogs/*' element={<Dialogs/>} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />

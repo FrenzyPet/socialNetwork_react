@@ -1,27 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';
-import { addPostActionCreator, updatePostTextActionCreator } from '../../../redux/profile-reducer';
+import { addPost, addPostMessage } from '../../../redux/profile-slice';
 
-const MyPosts = (props) => {
-
+const MyPosts = () => {
+  const [counter, setCounter] = useState(1);
+  const postsData = useSelector((state) => state.profile.postsData);
+  const newPost = useSelector((state) => state.profile.newPost);
+  const dispatch = useDispatch();
   const newPostElement = React.createRef();
 
   const addNewPost = () => {
-    props.dispatch(addPostActionCreator());
+    dispatch(addPost());
   }
 
   const onPostChange = () => {
     const text = newPostElement.current.value;
-    props.dispatch(updatePostTextActionCreator(text));
+    dispatch(addPostMessage(text));
   }
 
-  let postsElements = props.postsData.map((item) => (<Post id={item.id} message={item.message} likesCount={item.likeCount} />));
+  let postsElements = postsData.map((item) => (<Post id={item.id} message={item.message} likesCount={item.likeCount} />));
 
   return (
     <div>
       <div className={classes.newPost}>
-        <textarea className={classes.newPost_text} onChange={ onPostChange } ref={newPostElement} placeholder='Что у Вас нового?' value={props.newPost}></textarea>
+        <textarea className={classes.newPost_text} onChange={ onPostChange } ref={newPostElement} placeholder='Что у Вас нового?' value={newPost}></textarea>
         <button className={classes.button} onClick={ addNewPost } type='button'>Опубликовать</button>
       </div>
       <ul className={classes.posts}>
