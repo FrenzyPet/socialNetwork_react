@@ -9,15 +9,14 @@ const Dialogs = () => {
 
   const { dialogsData, messagesData, newMessageText } = useSelector(state => state.messages)
 
-  let dialogsElements = dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} />));
-  let messagesElements = messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine}/>));
+  const dialogsElements = dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} />));
+  const messagesElements = messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine}/>));
 
   const onSendButtonClick = () => {
     dispatch(addMessage());
   }
 
   const onNewMessageChange = (evt) => {
-    console.log('event', evt.target.value)
     let text = evt.target.value;
     dispatch(addTextMessage(text));
   }
