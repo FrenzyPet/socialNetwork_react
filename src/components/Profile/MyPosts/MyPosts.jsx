@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addPost, addPostMessage } from '../../../redux/profile-slice';
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';
 
 const MyPosts = () => {
-  const [counter, setCounter] = useState(1);
   const postsData = useSelector((state) => state.profile.postsData);
   const newPost = useSelector((state) => state.profile.newPost);
   const dispatch = useDispatch();
