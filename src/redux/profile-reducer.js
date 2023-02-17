@@ -19,7 +19,9 @@ const profileReducer = (state = initialState, action) => {
         id: state.postsData.length + 1,
         likeCount: 0
       }
-      state.postsData.push(newPost);
+      if (newPost.message) {
+        state.postsData.push(newPost);
+      }
       state.newPost = '';
       return state;
 

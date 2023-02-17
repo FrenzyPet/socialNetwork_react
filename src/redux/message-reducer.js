@@ -24,7 +24,9 @@ const messageReducer = (state = initialState, action) => {
         id: 6,
         isMine: true
       }
-      state.messagesData.push(newMessage);
+      if (newMessage.text) {
+        state.messagesData.push(newMessage);
+      }
       state.newMessageText = '';
       return state;
 
