@@ -1,9 +1,9 @@
 import classes from './MyFriends.module.css';
 import Friend from './Friend/Friend';
 
-const MyFriends = ({ friendsPage }) => {
+const MyFriends = (props) => {
 
-  const friendsElements = friendsPage.friendsData.map( (item) => (<Friend id={item.id} name={item.name} avatar={item.avatar}/>));
+  const friendsElements = props.friendsData.map( (item) => (<Friend id={item.id} name={item.name} avatar={item.avatar}/>));
 
   return (
     <section className={classes.friends}>

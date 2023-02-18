@@ -7,20 +7,20 @@ import News from './components/News/News';
 import Music from './components/Music/Music'
 import Settings from './components/Settings/Settings';
 import { Route, Routes } from 'react-router-dom';
-import MyFriends from './components/MyFriends/MyFriends';
+import MyFriendsContainer from './components/MyFriends/MyFriendsСontainer';
 
-const App = ({ state, dispatch, store }) => {
+const App = () => {
   return (
       <div className={classes.wrapper}>
         <Header />
         <Navigation />
-        <MyFriends friendsPage={state.friendsPage}/>
+        <MyFriendsContainer />
         <Routes>
-          <Route path='/' element={<Profile store={store}/>} />
-          <Route path='/dialogs/*' element={<DialogsContainer store={store}/>} />
-          <Route path='/news' element={<News />} />
-          <Route path='/music' element={<Music />} />
-          <Route path='/settings' element={<Settings />} />
+          <Route path='/' element={<Profile/>} />
+          <Route path='/dialogs/*' element={<DialogsContainer/>} />
+          <Route path='/news' element={<News/>} />
+          <Route path='/music' element={<Music/>} />
+          <Route path='/settings' element={<Settings/>} />
         </Routes>
       </div>
   );
