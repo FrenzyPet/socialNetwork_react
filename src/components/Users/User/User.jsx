@@ -21,7 +21,6 @@ const User = (props) => {
         </div>
       </div>
     </li>
-
   )
 }
 
