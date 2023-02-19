@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { followUserAC, setUsersAC, unfollowUserAC } from "../../redux/users-reducer";
 import Users from "./Users";
 
-
 const mapStateToProps = (state) => {
   return {
     usersData: state.usersPage.usersData
