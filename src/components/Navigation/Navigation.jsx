@@ -20,6 +20,9 @@ const Navigation = () => {
         <li className={classes.navigation__item}>
           <NavLink className={({ isActive }) => isActive ? classes.navigation__link + ' ' + classes.active : classes.navigation__link} to='/settings'>Settings</NavLink>
         </li>
+        <li className={classes.navigation__item}>
+          <NavLink className={({ isActive }) => isActive ? classes.navigation__link + ' ' + classes.active : classes.navigation__link} to='/users'>Users</NavLink>
+        </li>
       </ul>
     </nav>
   )

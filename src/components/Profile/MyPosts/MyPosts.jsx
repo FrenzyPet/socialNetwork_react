@@ -14,7 +14,7 @@ const MyPosts = (props) => {
     props.updatePostText(text);
   }
 
-  let postsElements = props.postsData.map((item) => (<Post id={item.id} message={item.message} likesCount={item.likeCount} />));
+  let postsElements = props.postsData.map((item) => (<Post id={item.id} message={item.message} likesCount={item.likeCount} key={item.id} />));
 
   return (
     <div>

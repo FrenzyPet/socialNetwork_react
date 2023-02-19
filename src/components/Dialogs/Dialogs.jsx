@@ -4,8 +4,8 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
 
-  let dialogsElements = props.dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} />));
-  let messagesElements = props.messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine}/>));
+  let dialogsElements = props.dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} key={item.id}/>));
+  let messagesElements = props.messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine} key={item.id}/>));
   let newMessageText = props.newMessageText;
 
   const onSendButtonClick = () => {

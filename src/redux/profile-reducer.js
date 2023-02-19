@@ -19,19 +19,18 @@ const profileReducer = (state = initialState, action) => {
         id: state.postsData.length + 1,
         likeCount: 0
       }
-      let stateCopy = {...state}
-      stateCopy.postsData = [...state.postsData]
-      if (newPost.message) {
-        stateCopy.postsData.push(newPost);
-      }
-      stateCopy.newPost = '';
-      return stateCopy;
+      return {
+        ...state,
+        postsData: [...state.postsData, newPost],
+        newPost: ''
+      };
     }
 
     case UPDATE_NEW_POST_TEXT: {
-      let stateCopy = {...state}
-      stateCopy.newPost = action.textMessage
-      return stateCopy;
+      return {
+        ...state,
+        newPost: action.textMessage
+      };
     }
 
     default:
