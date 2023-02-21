@@ -1,7 +1,7 @@
 import classes from './App.module.css';
 import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer'
 import News from './components/News/News';
 import Music from './components/Music/Music'
@@ -17,7 +17,7 @@ const App = () => {
         <Navigation />
         <MyFriendsContainer />
         <Routes>
-          <Route path='/' element={<Profile/>} />
+          <Route path='/profile/*' element={<ProfileContainer/>} />
           <Route path='/dialogs/*' element={<DialogsContainer/>} />
           <Route path='/news' element={<News/>} />
           <Route path='/music' element={<Music/>} />

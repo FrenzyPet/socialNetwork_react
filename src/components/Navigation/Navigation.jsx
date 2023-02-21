@@ -6,7 +6,7 @@ const Navigation = () => {
     <nav className={classes.navigation}>
       <ul className={classes.navigation__list}>
         <li className={classes.navigation__item}>
-          <NavLink className={({ isActive }) => isActive ? classes.navigation__link + ' ' + classes.active : classes.navigation__link} to='/'>Profile</NavLink>
+          <NavLink className={({ isActive }) => isActive ? classes.navigation__link + ' ' + classes.active : classes.navigation__link} to='/profile/*'>Profile</NavLink>
         </li>
         <li className={classes.navigation__item}>
           <NavLink className={({ isActive }) => isActive ? classes.navigation__link + ' ' + classes.active : classes.navigation__link} to='/dialogs'>Messages</NavLink>

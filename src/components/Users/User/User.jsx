@@ -1,11 +1,14 @@
 import classes from './User.module.css';
 import avatar from '../../../assets/images/user-avatar.png';
+import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
   return (
     <li className={classes.userItem}>
       <div className={classes.user__view}>
-        <img className={classes.user__avatar} src={props.photos.small ? props.photos.small : avatar} alt="avatar" />
+        <NavLink to={'/profile/' + props.id}>
+          <img className={classes.user__avatar} src={props.photos.small ? props.photos.small : avatar} alt="avatar" />
+        </NavLink>
         { props.followed ?
          (<button className={classes.user__button} type='button' onClick={() => props.unfollowUser(props.id)}>Удалить</button>) :
          (<button className={classes.user__button} type='button' onClick={() => props.followUser(props.id)}>Добавить</button>)}
