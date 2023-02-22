@@ -17,7 +17,7 @@ const App = () => {
         <Navigation />
         <MyFriendsContainer />
         <Routes>
-          <Route path='/profile/*' element={<ProfileContainer/>} />
+          <Route path='/profile/:userID?' element={<ProfileContainer/>} />
           <Route path='/dialogs/*' element={<DialogsContainer/>} />
           <Route path='/news' element={<News/>} />
           <Route path='/music' element={<Music/>} />
