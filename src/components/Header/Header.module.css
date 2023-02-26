@@ -6,6 +6,12 @@
   display: flex;
   align-items: center;
   min-height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.logoContainer {
+  display: flex;
 }
 
 .logo {
@@ -16,4 +22,8 @@
 .title {
   font-size: 30px;
   color: #00669a;
+}
+
+.userMenu {
+  margin-left: auto;
 }

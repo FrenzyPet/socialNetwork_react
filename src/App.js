@@ -1,5 +1,5 @@
 import classes from './App.module.css';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import Navigation from './components/Navigation/Navigation';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer'
@@ -13,7 +13,7 @@ import UsersContainer from './components/Users/UsersContainer';
 const App = () => {
   return (
       <div className={classes.wrapper}>
-        <Header />
+        <HeaderContainer />
         <Navigation />
         <MyFriendsContainer />
         <Routes>

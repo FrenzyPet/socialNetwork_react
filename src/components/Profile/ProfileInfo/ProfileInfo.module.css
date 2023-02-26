@@ -20,6 +20,7 @@
 }
 
 .photo {
+  display: block;
   border: 4px solid rgba(0, 153, 125, 0.7);
   border-radius: 10px;
 }
