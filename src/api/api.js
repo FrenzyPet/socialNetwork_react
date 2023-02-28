@@ -30,7 +30,6 @@ export const profileAPI = {
       .then(response => response.data)
       .catch(error => console.log(error.message))
   }
-
 }
 
 export const authAPI = {
@@ -39,5 +38,4 @@ export const authAPI = {
       .then(response => response.data)
       .catch(error => console.log(error.message))
   }
-
 }
