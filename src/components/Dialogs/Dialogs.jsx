@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router-dom';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
@@ -15,6 +16,10 @@ const Dialogs = (props) => {
   const onNewMessageChange = (evt) => {
     let text = evt.target.value;
     props.updateNewMessage(text);
+  }
+
+  if (!props.isAuth) {
+    return <Navigate to='/login'/>
   }
 
   return (
