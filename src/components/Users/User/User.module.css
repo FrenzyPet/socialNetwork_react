@@ -39,6 +39,11 @@
   background-color: rgba(0, 153, 125, 0.9);
 }
 
+.user__button:disabled {
+  color: #333333;
+  background-color: #e6e6e6;
+}
+
 .user__info {
   flex-grow: 1;
   display: flex;
