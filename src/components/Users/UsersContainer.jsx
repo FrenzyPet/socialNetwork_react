@@ -1,29 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { usersAPI } from "../../api/api";
-import { followUser, setCurrentPage, setTotalUsersCount, setUsers, setIsFetching, unfollowUser, toggleFollowingProgress } from "../../redux/users-reducer";
+import { toggleFollowingProgress, getUsers, changePage, unfollowThunk, followThunk } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import Users from "./Users";
 
 class UsersAPIContainer extends React.Component {
   componentDidMount() {
-    this.props.setIsFetching(true)
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-      .then(data => {
-        this.props.setIsFetching(false);
-        this.props.setUsers(data.items);
-        this.props.setTotalUsersCount(data.totalCount);
-      })
+    this.props.getUsers(this.props.currentPage, this.props.pageSize)
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.setIsFetching(true);
-    usersAPI.getUsers(pageNumber, this.props.pageSize)
-      .then(data => {
-        this.props.setIsFetching(false);
-        this.props.setUsers(data.items)
-      })
+    this.props.changePage(pageNumber, this.props.pageSize)
   }
 
   render() {
@@ -34,9 +21,9 @@ class UsersAPIContainer extends React.Component {
              currentPage={this.props.currentPage}
              onPageChanged={this.onPageChanged}
              usersData={this.props.usersData}
-             unfollowUser={this.props.unfollowUser}
-             followUser={this.props.followUser}
              followingInProgress={this.props.followingInProgress}
+             unfollowThunk={this.props.unfollowThunk}
+             followThunk={this.props.followThunk}
              toggleFollowingProgress={this.props.toggleFollowingProgress}/>
     </>)
   }
@@ -54,13 +41,11 @@ const mapStateToProps = (state) => {
 }
 
 const UsersContainer = connect(mapStateToProps, {
-  followUser,
-  unfollowUser,
-  setUsers,
-  setCurrentPage,
-  setTotalUsersCount,
-  setIsFetching,
-  toggleFollowingProgress
+  toggleFollowingProgress,
+  getUsers,
+  changePage,
+  unfollowThunk,
+  followThunk
 })(UsersAPIContainer);
 
 export default UsersContainer;
