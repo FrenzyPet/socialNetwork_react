@@ -1,4 +1,5 @@
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 import thunkMW from "redux-thunk";
 import authReducer from "./auth-reducer";
 import friendsReducer from "./friends-reducer";
@@ -14,7 +15,6 @@ const reducers = combineReducers({
   auth: authReducer
 });
 
-
-const store = createStore(reducers, applyMiddleware(thunkMW));
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunkMW)));
 
 export default store;
