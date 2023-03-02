@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import { getUsers, changePage, unfollowThunk, followThunk } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import withAuthRedirect from "../HOC/withAuthRedirect";
@@ -29,8 +30,6 @@ class UsersAPIContainer extends React.Component {
   }
 }
 
-const AuthRedirectHOC = withAuthRedirect(UsersAPIContainer)
-
 const mapStateToProps = (state) => {
   return {
     usersData: state.usersPage.usersData,
@@ -42,11 +41,14 @@ const mapStateToProps = (state) => {
   }
 }
 
-const UsersContainer = connect(mapStateToProps, {
-  getUsers,
-  changePage,
-  unfollowThunk,
-  followThunk
-})(AuthRedirectHOC);
+const UsersContainer = compose(
+  connect(mapStateToProps, {
+    getUsers,
+    changePage,
+    unfollowThunk,
+    followThunk
+  }),
+  withAuthRedirect
+)(UsersAPIContainer)
 
 export default UsersContainer;
