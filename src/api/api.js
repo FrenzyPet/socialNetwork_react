@@ -45,3 +45,10 @@ export const authAPI = {
       .catch(error => console.log(error.message))
   }
 }
+
+export const formAPI = {
+  authorize(email, password, rememberMe) {
+    return instance.post(`auth/login`, {email, password, rememberMe})
+  }
+
+}
