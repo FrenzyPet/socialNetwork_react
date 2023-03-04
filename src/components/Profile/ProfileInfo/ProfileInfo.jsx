@@ -4,7 +4,6 @@ import avatar from '../../../assets/images/user-avatar.png';
 import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
-
   if (!props.profile) {
     return <Preloader/>
   }
@@ -16,7 +15,7 @@ const ProfileInfo = (props) => {
         </div>
         <div className={classes.data}>
           <p className={classes.name}>{props.profile.fullName}</p>
-          <ProfileStatus status={'Hello pidor'}/>
+          <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
         </div>
       </div>
     </div>

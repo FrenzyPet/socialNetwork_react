@@ -29,6 +29,12 @@ export const profileAPI = {
     return instance.get(`profile/${userID}`)
       .then(response => response.data)
       .catch(error => console.log(error.message))
+  },
+  getStatus(userID) {
+    return instance.get(`profile/status/${userID}`)
+  },
+  updateStatus(statusText) {
+    return instance.put(`profile/status`, { status: statusText })
   }
 }
 
