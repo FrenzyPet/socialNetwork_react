@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 const initialState = {
@@ -13,28 +12,19 @@ const initialState = {
     { text: 'Очень нужно, срочно', id: '0003', isMine: false },
     { text: 'Тебя взломали?', id: '0004', isMine: true },
   ],
-  newMessageText: ''
 }
 
 const messageReducer = (state = initialState, action) => {
   switch(action.type) {
     case SEND_MESSAGE: {
       const newMessage = {
-        text: state.newMessageText,
+        text: action.payload,
         id: state.messagesData.length + 1,
         isMine: true
       }
       return {
         ...state,
         messagesData: [...state.messagesData, newMessage],
-        newMessageText: ''
-      };
-    }
-
-    case UPDATE_NEW_MESSAGE_TEXT: {
-      return {
-        ...state,
-        newMessageText: action.newText
       };
     }
 
@@ -43,7 +33,6 @@ const messageReducer = (state = initialState, action) => {
   }
 }
 
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
-export const updateMessageTextActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE_TEXT, newText: text})
+export const sendMessageActionCreator = (textMessage) => ({type: SEND_MESSAGE, payload: textMessage})
 
 export default messageReducer;

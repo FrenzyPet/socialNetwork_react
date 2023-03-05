@@ -1,21 +1,33 @@
 // import { Navigate } from 'react-router-dom';
+import { Field, reduxForm } from 'redux-form';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
+
+const MessageForm = (props) => {
+  return (
+    <form className={classes.dialogs__newMessage} onSubmit={ props.handleSubmit }>
+          <Field className={classes.dialogs__newMessageText}
+                 placeholder='Введите текст сообщения'
+                 name='newMessageBody'
+                 component='textarea'
+          >
+          </Field>
+          <button className={classes.dialogs__sendButton}>Отправить</button>
+    </form>
+  )
+}
+
+const MessageReduxForm = reduxForm({ form: 'dialogsMessage'})(MessageForm)
 
 const Dialogs = (props) => {
 
   let dialogsElements = props.dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} key={item.id}/>));
   let messagesElements = props.messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine} key={item.id}/>));
-  let newMessageText = props.newMessageText;
 
-  const onSendButtonClick = () => {
-    props.sendMessage();
-  }
-
-  const onNewMessageChange = (evt) => {
-    let text = evt.target.value;
-    props.updateNewMessage(text);
+  const onSubmit = (formData) => {
+    console.log(formData)
+    props.sendMessage(formData.newMessageBody)
   }
 
   return (
@@ -30,18 +42,12 @@ const Dialogs = (props) => {
         <div className={classes.dialogs__messageList}>
           { messagesElements }
         </div>
-        <div className={classes.dialogs__newMessage}>
-          <textarea
-              className={classes.dialogs__newMessageText}
-              onChange={ onNewMessageChange }
-              placeholder='Введите текст сообщения'
-              value={newMessageText}>
-          </textarea>
-          <button className={classes.dialogs__sendButton} onClick={ onSendButtonClick } type="button">Отправить</button>
-        </div>
+        <MessageReduxForm onSubmit={onSubmit}/>
       </div>
     </div>
   )
 }
+
+
 
 export default Dialogs;

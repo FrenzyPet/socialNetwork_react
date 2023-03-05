@@ -14,14 +14,12 @@ const LoginForm = (props) => {
         <Field name='rememberMe' className={style.form__input__checkbox} type="checkbox" component='input'/>
         Запомнить вход
       </label>
-      <button className={style.form__button} type="submit">Залогиниться</button>
+      <button className={style.form__button}>Залогиниться</button>
     </form>
   )
 }
 
-const LoginReduxForm = reduxForm({
-  form: 'login'
-})(LoginForm)
+const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
 const Login = (props) => {
   const onSubmit = (formData) => {
