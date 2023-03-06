@@ -14,8 +14,7 @@ const authReducer = (state = initialState, action) => {
     case SET_USER_LOGIN:
       return {
         ...state,
-        ...action.userData,
-        isAuth: true
+        ...action.payload
       }
 
     default:
@@ -23,14 +22,32 @@ const authReducer = (state = initialState, action) => {
   }
 }
 
-export const setUserLogin = (userID, login, email) => ({type: SET_USER_LOGIN, userData: {userID, login, email}});
+export const setUserLogin = (userID, login, email, isAuth) => ({type: SET_USER_LOGIN, payload: {userID, login, email, isAuth}});
 
 export const getUserLogin = () => (dispatch) => {
   authAPI.startAuthentify()
   .then(data => {
     if (data.resultCode === 0) {
        const {email, id, login} = data.data;
-       dispatch(setUserLogin(id, login, email))
+       dispatch(setUserLogin(id, login, email, true))
+     }
+  })
+}
+
+export const logIn = (email, password, rememberMe) => (dispatch) => {
+  authAPI.login(email, password, rememberMe)
+  .then(response => {
+    if (response.data.resultCode === 0) {
+       dispatch(getUserLogin())
+     }
+  })
+}
+
+export const logOut = () => (dispatch) => {
+  authAPI.logout()
+  .then(response => {
+    if (response.data.resultCode === 0) {
+       dispatch(setUserLogin(null, null, null, false))
      }
   })
 }

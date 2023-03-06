@@ -37,6 +37,7 @@
 
 .form__button {
   width: auto;
+  font-size: 20px;
   padding: 5px 10px;
   color: white;
   background-color: rgba(0, 153, 125, 0.7);

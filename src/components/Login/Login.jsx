@@ -2,6 +2,9 @@ import style from './Login.module.css';
 import { reduxForm, Field } from 'redux-form';
 import { FormField } from '../common/FormsFields/FormsFields';
 import { required } from '../../utils/validators';
+import { connect } from 'react-redux';
+import { logIn } from '../../redux/auth-reducer';
+import { Navigate } from 'react-router-dom';
 
 const LoginForm = (props) => {
   return (
@@ -10,7 +13,7 @@ const LoginForm = (props) => {
         <Field name='email'
                type='email'
                typefield='input'
-               placeholder='Введите логин'
+               placeholder='Введите email'
                component={FormField}
                validate={[required]}
                right='true'
@@ -34,7 +37,7 @@ const LoginForm = (props) => {
         />
         Запомнить вход
       </label>
-      <button className={style.form__button}>Залогиниться</button>
+      <button className={style.form__button}>Войти</button>
     </form>
   )
 }
@@ -44,7 +47,13 @@ const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 const Login = (props) => {
   const onSubmit = (formData) => {
     console.log(formData)
+    props.logIn(formData.email, formData.password, formData.rememberMe)
   }
+  
+  if (props.isAuth) {
+    return <Navigate to="/profile"/>
+  }
+
   return (
     <div className={style.login}>
       <h1 className={style.login__header}>Вход в FrenzyPulse</h1>
@@ -53,4 +62,10 @@ const Login = (props) => {
   )
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth
+  }
+}
+
+export default connect(mapStateToProps, {logIn})(Login);
