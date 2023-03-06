@@ -1,0 +1,39 @@
+.tooltip__wrapper {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+}
+
+.tooltip__button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer
+}
+
+.tooltip__button:hover + .tooltip__text {
+  display: block;
+}
+
+.tooltip__text {
+  position: absolute;
+  display: none;
+  text-align: center;
+  min-width: 100px;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  font-size: 14px;
+  color: white;
+  background-color: #df7474;
+  border-radius: 10px;
+  z-index: 50;
+}
+
+.tooltip__text_right {
+  top: 50%;
+  left: 50px;
+  transform: translateY(-50%);
+}

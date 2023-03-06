@@ -43,12 +43,11 @@ export const authAPI = {
     return instance.get(`auth/me`)
       .then(response => response.data)
       .catch(error => console.log(error.message))
-  }
-}
-
-export const formAPI = {
-  authorize(email, password, rememberMe) {
+  },
+  login(email, password, rememberMe = false) {
     return instance.post(`auth/login`, {email, password, rememberMe})
+  },
+  logout() {
+    return instance.delete(`auth/login`)
   }
-
 }

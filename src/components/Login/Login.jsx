@@ -1,17 +1,37 @@
 import style from './Login.module.css';
 import { reduxForm, Field } from 'redux-form';
+import { FormField } from '../common/FormsFields/FormsFields';
+import { required } from '../../utils/validators';
 
 const LoginForm = (props) => {
   return (
     <form className={style.login__form} onSubmit={props.handleSubmit}>
       <label className={style.form__label}>
-        <Field name='email' className={style.form__input} type="email" placeholder="Введите логин" component='input'/>
+        <Field name='email'
+               type='email'
+               typefield='input'
+               placeholder='Введите логин'
+               component={FormField}
+               validate={[required]}
+               right='true'
+        />
       </label>
       <label className={style.form__label}>
-        <Field name='password' className={style.form__input} type="password" placeholder="Введите пароль" component='input'/>
+        <Field name='password'
+               type='password'
+               typefield='input'
+               placeholder='Введите пароль'
+               component={FormField}
+               validate={[required]}
+               right='true'
+        />
       </label>
-      <label className={style.form__label + " " + style.form__label__checkbox}>
-        <Field name='rememberMe' className={style.form__input__checkbox} type="checkbox" component='input'/>
+      <label className={style.form__label + ' ' + style.form__label__checkbox}>
+        <Field name='rememberMe'
+               className={style.form__input__checkbox}
+               type='checkbox'
+               component='input'
+        />
         Запомнить вход
       </label>
       <button className={style.form__button}>Залогиниться</button>

@@ -1,18 +1,7 @@
-.newPost_text {
-  display: block;
-  width: 100%;
-  appearance: none;
-  border: 4px solid rgba(0, 153, 125, 0.7);
-  border-radius: 5px;
-  padding: 10px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  resize: none;
-}
-
-.newPost_text:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 5px 0 rgba(0, 153, 125, 0.9);
+.newPost {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .button {

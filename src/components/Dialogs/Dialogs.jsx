@@ -1,16 +1,22 @@
 // import { Navigate } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { maxLength, required } from '../../utils/validators';
+import { FormField } from '../common/FormsFields/FormsFields';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
 
+const maxLength300 = maxLength(300)
+
 const MessageForm = (props) => {
   return (
     <form className={classes.dialogs__newMessage} onSubmit={ props.handleSubmit }>
-          <Field className={classes.dialogs__newMessageText}
+          <Field
                  placeholder='Введите текст сообщения'
                  name='newMessageBody'
-                 component='textarea'
+                 component={FormField}
+                 typefield='textarea'
+                 validate={[required, maxLength300]}
           >
           </Field>
           <button className={classes.dialogs__sendButton}>Отправить</button>
