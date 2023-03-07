@@ -7,11 +7,11 @@
 .textarea {
   display: block;
   width: 100%;
-  font-size: 18px;
+  font-size: 14px;
   appearance: none;
   border: 2px solid rgba(0, 153, 125, 0.7);
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px 10px;
   box-sizing: border-box;
   resize: none;
 }

@@ -6,6 +6,7 @@
   border-radius: 10px;
   background-color: white;
   padding: 25px 50px;
+  position: relative;
 }
 
 .login__header {
@@ -48,4 +49,18 @@
 
 .form__button:hover {
   background-color: rgba(0, 153, 125, 0.9);
+}
+
+.error {
+  position: absolute;
+  text-align: center;
+  padding: 10px;
+  width: auto;
+  white-space: nowrap;
+  left: 50%;
+  bottom: -60px;
+  transform: translateX(-50%);
+  color: white;
+  background-color: #df7474;
+  border-radius: 10px;
 }

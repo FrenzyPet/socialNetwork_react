@@ -38,6 +38,7 @@ const LoginForm = (props) => {
         Запомнить вход
       </label>
       <button className={style.form__button}>Войти</button>
+      { props.error && <div className={style.error}>{props.error}</div>}
     </form>
   )
 }
