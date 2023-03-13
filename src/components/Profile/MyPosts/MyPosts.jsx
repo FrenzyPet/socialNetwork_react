@@ -3,6 +3,7 @@ import { Form, Field } from 'react-final-form'
 import { FormField } from '../../common/FormsFields/FormsFields';
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';
+import { maxLength, required, composeValidators } from '../../../utils/validators';
 
 const NewPostForm = (props) => {
 
@@ -21,6 +22,7 @@ const NewPostForm = (props) => {
                   component={FormField}
                   typefield='textarea'
                   placeholder='Что у Вас нового?'
+                  validate={composeValidators(required, maxLength(10))}
             />
             <button className={classes.button} type="submit">Опубликовать</button>
         </form>

@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
 import style from './Login.module.css';
 import { FormField } from '../common/FormsFields/FormsFields';
-// import { required } from '../../utils/validators';
+import { required } from '../../utils/validators';
 import { logIn } from '../../redux/auth-reducer';
 
 const LoginForm = (props) => {
@@ -23,7 +23,7 @@ const LoginForm = (props) => {
                   typefield='input'
                   placeholder='Введите email'
                   component={FormField}
-                  // validate={[required]}
+                  validate={required}
                   right='true'
             />
           </label>
@@ -33,7 +33,7 @@ const LoginForm = (props) => {
                   typefield='input'
                   placeholder='Введите пароль'
                   component={FormField}
-                  // validate={[required]}
+                  validate={required}
                   right='true'
             />
           </label>

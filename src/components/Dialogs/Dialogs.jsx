@@ -3,6 +3,7 @@ import { FormField } from '../common/FormsFields/FormsFields';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
+import { maxLength, required, composeValidators } from '../../utils/validators';
 
 const MessageForm = (props) => {
 
@@ -22,6 +23,7 @@ const MessageForm = (props) => {
                     name='newMessageBody'
                     component={FormField}
                     typefield='textarea'
+                    validate={composeValidators(required, maxLength(300))}
               >
               </Field>
               <button className={classes.dialogs__sendButton}>Отправить</button>
