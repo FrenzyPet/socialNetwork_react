@@ -1,10 +1,10 @@
-import style from './Login.module.css';
+import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import { reduxForm, Field } from 'redux-form';
+import style from './Login.module.css';
 import { FormField } from '../common/FormsFields/FormsFields';
 import { required } from '../../utils/validators';
-import { connect } from 'react-redux';
 import { logIn } from '../../redux/auth-reducer';
-import { Navigate } from 'react-router-dom';
 
 const LoginForm = (props) => {
   return (
@@ -47,7 +47,6 @@ const LoginReduxForm = reduxForm({ form: 'login' })(LoginForm)
 
 const Login = (props) => {
   const onSubmit = (formData) => {
-    console.log(formData)
     props.logIn(formData.email, formData.password, formData.rememberMe)
   }
   
