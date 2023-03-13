@@ -1,40 +1,40 @@
-// import { Navigate } from 'react-router-dom';
-import { Field, reduxForm } from 'redux-form';
-import { maxLength, required } from '../../utils/validators';
+import { Form, Field } from 'react-final-form';
 import { FormField } from '../common/FormsFields/FormsFields';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
 
-const maxLength300 = maxLength(300)
-
 const MessageForm = (props) => {
-  return (
-    <form className={classes.dialogs__newMessage} onSubmit={ props.handleSubmit }>
-          <Field
-                 placeholder='Введите текст сообщения'
-                 name='newMessageBody'
-                 component={FormField}
-                 typefield='textarea'
-                 validate={[required, maxLength300]}
-          >
-          </Field>
-          <button className={classes.dialogs__sendButton}>Отправить</button>
-    </form>
-  )
-}
-
-const MessageReduxForm = reduxForm({ form: 'dialogsMessage'})(MessageForm)
-
-const Dialogs = (props) => {
-
-  let dialogsElements = props.dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} key={item.id}/>));
-  let messagesElements = props.messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine} key={item.id}/>));
 
   const onSubmit = (formData) => {
     console.log(formData)
     props.sendMessage(formData.newMessageBody)
   }
+
+  return (
+    <Form
+      onSubmit={onSubmit}
+    >
+      {(props) => (
+        <form className={classes.dialogs__newMessage} onSubmit={ props.handleSubmit }>
+              <Field
+                    placeholder='Введите текст сообщения'
+                    name='newMessageBody'
+                    component={FormField}
+                    typefield='textarea'
+              >
+              </Field>
+              <button className={classes.dialogs__sendButton}>Отправить</button>
+        </form>
+      )}
+    </Form>
+  )
+}
+
+const Dialogs = (props) => {
+
+  let dialogsElements = props.dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} key={item.id}/>));
+  let messagesElements = props.messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine} key={item.id}/>));
 
   return (
     <div className={classes.dialogs}>
@@ -48,7 +48,7 @@ const Dialogs = (props) => {
         <div className={classes.dialogs__messageList}>
           { messagesElements }
         </div>
-        <MessageReduxForm onSubmit={onSubmit}/>
+        <MessageForm sendMessage={props.sendMessage}/>
       </div>
     </div>
   )

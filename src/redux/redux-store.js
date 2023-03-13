@@ -1,6 +1,5 @@
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { reducer as formReducer } from "redux-form";
 import thunkMW from "redux-thunk";
 import appReducer from "./app-reducer";
 import authReducer from "./auth-reducer";
@@ -15,7 +14,6 @@ const reducers = combineReducers({
   friendsPage: friendsReducer,
   usersPage: usersReducer,
   auth: authReducer,
-  form: formReducer,
   app: appReducer
 });
 

@@ -33,6 +33,6 @@ const messageReducer = (state = initialState, action) => {
   }
 }
 
-export const sendMessageActionCreator = (textMessage) => ({type: SEND_MESSAGE, payload: textMessage})
+export const sendMessage = (textMessage) => ({type: SEND_MESSAGE, payload: textMessage})
 
 export default messageReducer;
