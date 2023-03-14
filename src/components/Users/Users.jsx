@@ -18,16 +18,14 @@ const Users = (props) => {
 
   const paginationElements = slicedPages.map(item => {
     return (
-      <li className={classes.pagination__item + (props.currentPage === item ? ` ${classes.pagination__item_current}` : '')}
+      <li key={item} className={classes.pagination__item + (props.currentPage === item ? ` ${classes.pagination__item_current}` : '')}
           onClick={ () => props.onPageChanged(item) }>
             {item}
       </li>
     )
   })
 
-  const getUsersElement = () => {
-    return props.usersData.map(item => {
-      return (
+  const usersElement = props.usersData.map(item => (
         <User
           key={item.id}
           id={item.id}
@@ -39,9 +37,7 @@ const Users = (props) => {
           unfollowThunk={props.unfollowThunk}
           followThunk={props.followThunk}
           />
-      )
-    })
-  }
+      ))
 
   return (
     <div className={classes.users}>
@@ -53,7 +49,7 @@ const Users = (props) => {
         <button className={classes.form__button} type='submit'>Найти друзей</button>
       </form>
       <ul className={classes.users__list}>
-        {getUsersElement()}
+        { usersElement }
       </ul>
       <button className={classes.users__button} type='button'>Показать еще...</button>
     </div>
