@@ -86,46 +86,38 @@ export const setTotalUsersCount = (totalCount) => ({ type: SET_TOTAL_USERS_COUNT
 export const setIsFetching = (value) => ({ type: TOGGLE_IS_FETCHING, isFetching: value })
 export const toggleFollowingProgress = (value, userID) => ({ type: TOGGLE_FOLLOWING_PROGRESS, isFetching: value, userID })
 
-export const requestUsers = (currentPage, pageSize) => (dispatch) => { /* Thunk */
+export const requestUsers = (currentPage, pageSize) => async (dispatch) => { /* Thunk */
   dispatch(setIsFetching(true))
-  usersAPI.getUsers(currentPage,pageSize)
-    .then(data => {
-      dispatch(setIsFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    })
+  const data = await usersAPI.getUsers(currentPage,pageSize)
+  dispatch(setIsFetching(false));
+  dispatch(setUsers(data.items));
+  dispatch(setTotalUsersCount(data.totalCount));
 }
 
-export const changePage = (pageNumber, pageSize) => (dispatch) => { /* Thunk */
+export const changePage = (pageNumber, pageSize) => async (dispatch) => { /* Thunk */
   dispatch(setCurrentPage(pageNumber));
   dispatch(setIsFetching(true))
-  usersAPI.getUsers(pageNumber, pageSize)
-    .then(data => {
-      dispatch(setIsFetching(false));
-      dispatch(setUsers(data.items));
-    })
+  const data = await usersAPI.getUsers(pageNumber, pageSize)
+  dispatch(setIsFetching(false));
+  dispatch(setUsers(data.items));
 }
 
-export const unfollowThunk = (userID) => (dispatch) => {
+export const unfollowThunk = (userID) => async (dispatch) => {
   dispatch(toggleFollowingProgress(true, userID))
-  usersAPI.unfollowUser(userID)
-    .then(data => {
-      if (data.resultCode === 0) {
-        dispatch(unfollowUser(userID))
-      }
-      dispatch(toggleFollowingProgress(false, userID))
-    })
+  const data = await usersAPI.unfollowUser(userID)
+  if (data.resultCode === 0) {
+    dispatch(unfollowUser(userID))
+  }
+  dispatch(toggleFollowingProgress(false, userID))
 }
 
-export const followThunk = (userID) => (dispatch) => {
+export const followThunk = (userID) => async (dispatch) => {
   dispatch(toggleFollowingProgress(true, userID))
-  usersAPI.followUser(userID)
-    .then(data => {
-      if (data.resultCode === 0) {
-        dispatch(followUser(userID))
-      }
-      dispatch(toggleFollowingProgress(false, userID))
-    })
+  const data = await usersAPI.followUser(userID)
+  if (data.resultCode === 0) {
+    dispatch(followUser(userID))
+  }
+  dispatch(toggleFollowingProgress(false, userID))
 }
 
 export default usersReducer;
