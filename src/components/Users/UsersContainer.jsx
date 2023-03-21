@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { requestUsers, changePage, followThunk, unfollowThunk } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
-// import withAuthRedirect from "../HOC/withAuthRedirect";
 import Users from "./Users";
 
 const UsersContainer = () => {

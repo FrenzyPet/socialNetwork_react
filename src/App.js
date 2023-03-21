@@ -7,13 +7,14 @@ import Navigation from './components/Navigation/Navigation';
 import MyFriendsContainer from './components/MyFriends/MyFriendsСontainer';
 import { Routes, Route } from 'react-router-dom';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
+import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/Login';
 import Preloader from './components/common/Preloader/Preloader';
+import CheckAuth from './components/Layout/CheckAuth';
 
 const App = ({ isInit, initializeApp }) => {
   useEffect(() => {
@@ -30,12 +31,14 @@ const App = ({ isInit, initializeApp }) => {
       <Navigation />
       <MyFriendsContainer />
       <Routes>
-        <Route path='/profile/:userID?' element={<ProfileContainer />} />
-        <Route path='/dialogs/*' element={<DialogsContainer />} />
-        <Route path='/news' element={<News />} />
-        <Route path='/music' element={<Music />} />
-        <Route path='/settings' element={<Settings />} />
-        <Route path='/users' element={<UsersContainer />} />
+        <Route element={<CheckAuth/>}>
+          <Route path='/profile/:userID?' element={<ProfileContainer />} />
+          <Route path='/dialogs/*' element={<Dialogs />} />
+          <Route path='/news' element={<News />} />
+          <Route path='/music' element={<Music />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/users' element={<UsersContainer />} />
+        </Route>
         <Route path='/login' element={<Login />} />
       </Routes>
     </div>

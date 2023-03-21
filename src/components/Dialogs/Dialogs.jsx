@@ -4,12 +4,13 @@ import classes from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
 import { maxLength, required, composeValidators } from '../../utils/validators';
+import { sendMessage } from '../../redux/message-reducer';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MessageForm = (props) => {
 
   const onSubmit = (formData) => {
-    console.log(formData)
-    props.sendMessage(formData.newMessageBody)
+    props.onSendMessage(formData.newMessageBody)
   }
 
   return (
@@ -34,9 +35,15 @@ const MessageForm = (props) => {
 }
 
 const Dialogs = (props) => {
+  const { dialogsData, messagesData } = useSelector(state => state.messagesPage)
+  const dispatch = useDispatch()
 
-  let dialogsElements = props.dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} key={item.id}/>));
-  let messagesElements = props.messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine} key={item.id}/>));
+  const onSendMessage = (textMessage) => {
+    dispatch(sendMessage(textMessage))
+  }  
+
+  let dialogsElements = dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} key={item.id}/>));
+  let messagesElements = messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine} key={item.id}/>));
 
   return (
     <div className={classes.dialogs}>
@@ -50,12 +57,10 @@ const Dialogs = (props) => {
         <div className={classes.dialogs__messageList}>
           { messagesElements }
         </div>
-        <MessageForm sendMessage={props.sendMessage}/>
+        <MessageForm onSendMessage={onSendMessage}/>
       </div>
     </div>
   )
 }
-
-
 
 export default Dialogs;
