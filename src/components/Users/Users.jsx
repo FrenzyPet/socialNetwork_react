@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { requestUsers, changePage, followThunk, unfollowThunk } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
+import Pagination from '../common/Pagination/Pagination';
 
 const Users = (props) => {
   const { 
@@ -32,28 +33,6 @@ const Users = (props) => {
     dispatch(unfollowThunk(userID))
   }
 
-  const pagesCount = Math.ceil(totalCount / pageSize)
-  let pages = Array.from({ length: pagesCount }, (_, index) => index + 1);
-
-  const curP = currentPage;
-  let slicedPages = []
-  if (curP >= 1 && curP <=6) {
-    slicedPages = pages.slice(0, 11)
-  } else if (pagesCount - curP <= 5) {
-    slicedPages = pages.slice(pagesCount - 11, pagesCount)
-  } else if (curP > 6) {
-    slicedPages = pages.slice(curP - 6, curP + 5)
-  }
-
-  const paginationElements = slicedPages.map(item => {
-    return (
-      <li key={item} className={classes.pagination__item + (currentPage === item ? ` ${classes.pagination__item_current}` : '')}
-          onClick={ () => onPageChanged(item) }>
-            {item}
-      </li>
-    )
-  })
-
   const usersElement = usersData.map(item => (
         <User
           key={item.id}
@@ -71,9 +50,11 @@ const Users = (props) => {
   return (<>
     {isFetching ? <Preloader/> : null}
     <div className={classes.users}>
-      <ul className={classes.pagination}>
-        { paginationElements }
-      </ul>
+      <Pagination totalCount={totalCount}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  onPageChanged={onPageChanged}
+      />
       <form className={classes.users__form} action="">
         <input className={classes.form__input} type="text" placeholder="Введите имя пользователя"/>
         <button className={classes.form__button} type='submit'>Найти друзей</button>
@@ -81,7 +62,6 @@ const Users = (props) => {
       <ul className={classes.users__list}>
         { usersElement }
       </ul>
-      <button className={classes.users__button} type='button'>Показать еще...</button>
     </div>
   </>
   )
