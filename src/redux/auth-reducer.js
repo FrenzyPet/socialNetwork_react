@@ -1,6 +1,6 @@
 import { authAPI } from "../api/api";
 
-const SET_USER_LOGIN = 'SET_USER_LOGIN'
+const SET_USER_LOGIN = 'frenzyPulse/auth/SET_USER_LOGIN'
 
 const initialState = {
   userID: null,

@@ -17,7 +17,8 @@ const User = (props) => {
             : (<button className={classes.user__button}
                        disabled={props.followingInProgress.some(item => item === props.id)}
                        type='button'
-                       onClick={() => props.onFollow(props.id)}>Добавить</button>)}
+                       onClick={() => props.onFollow(props.id)}>Добавить</button>)
+        }
       </div>
       <div className={classes.user__info}>
         <div className={classes.user__personal}>

@@ -1,6 +1,6 @@
 import { getUserLogin } from "./auth-reducer";
 
-const SET_INITIALIZED = 'SET_INITIALIZED'
+const SET_INITIALIZED = 'frenzyPulse/app/SET_INITIALIZED'
 
 const initialState = {
   isInit: false

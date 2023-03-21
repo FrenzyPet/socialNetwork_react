@@ -1,12 +1,12 @@
 import { usersAPI } from "../api/api";
 
-const FOLLOW_USER = 'FOLLOW-USER';
-const UNFOLLOW_USER = 'UNFOLLOW-USER';
-const SET_USERS = 'SET-USERS';
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_FOLLOWING_PROGRESS = 'TOGGLE_FOLLOWING_PROGRESS';
+const FOLLOW_USER = 'frenzyPulse/users/FOLLOW-USER';
+const UNFOLLOW_USER = 'frenzyPulse/users/UNFOLLOW-USER';
+const SET_USERS = 'frenzyPulse/users/SET-USERS';
+const SET_CURRENT_PAGE = 'frenzyPulse/users/SET-CURRENT-PAGE';
+const SET_TOTAL_USERS_COUNT = 'frenzyPulse/users/SET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'frenzyPulse/users/TOGGLE_IS_FETCHING';
+const TOGGLE_FOLLOWING_PROGRESS = 'frenzyPulse/users/TOGGLE_FOLLOWING_PROGRESS';
 
 const initialState = {
   usersData: [],

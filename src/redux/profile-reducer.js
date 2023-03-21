@@ -1,8 +1,8 @@
 import { profileAPI } from "../api/api";
 
-const ADD_POST = 'ADD-POST-STATE';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_USER_STATUS = 'SET_USER_STATUS';
+const ADD_POST = 'frenzyPulse/profile/ADD-POST-STATE';
+const SET_USER_PROFILE = 'frenzyPulse/profile/SET_USER_PROFILE';
+const SET_USER_STATUS = 'frenzyPulse/profile/SET_USER_STATUS';
 
 const initialState = {
   postsData: [
