@@ -4,6 +4,8 @@ import { FormField } from '../../common/FormsFields/FormsFields';
 import classes from './MyPosts.module.css'
 import Post from './Post/Post';
 import { maxLength, required, composeValidators } from '../../../utils/validators';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPost } from '../../../redux/profile-reducer';
 
 const NewPostForm = (props) => {
 
@@ -31,19 +33,24 @@ const NewPostForm = (props) => {
   )
 }
 
-const MyPosts = React.memo((props) => {
-  console.log('render posts')
-  let postsElements = props.postsData.map((item) => (<Post id={item.id} message={item.message} likesCount={item.likeCount} key={item.id} />));
+const MyPosts = () => {
+  const dispatch = useDispatch()
+  const postsData = useSelector(state => state.profilePage.postsData)
+  const postsElements = postsData.map((item) => (<Post id={item.id} message={item.message} likesCount={item.likeCount} key={item.id} />));
 
+  const onAddPost = (postText) => {
+    dispatch(addPost(postText))
+  }
+  
   return (
     <div>
-      <NewPostForm addNewPost={props.addPost}/>
+      <NewPostForm addNewPost={onAddPost}/>
       <ul className={classes.posts}>
         {postsElements}
       </ul>
     </div>
   )
-})
+}
 
 export default MyPosts;
 

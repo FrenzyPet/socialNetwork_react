@@ -1,12 +1,12 @@
 import classes from './Profile.module.css'
-import MyPostsContainer from './MyPosts/MyPostsContainer';
+import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = (props) => {
+const Profile = () => {
   return (
     <section className={classes.profile}>
-      <ProfileInfo {...props}/>
-      <MyPostsContainer />
+      <ProfileInfo/>
+      <MyPosts/>
     </section>
   )
 }

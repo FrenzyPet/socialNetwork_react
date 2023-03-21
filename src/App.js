@@ -6,7 +6,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import Navigation from './components/Navigation/Navigation';
 import MyFriendsContainer from './components/MyFriends/MyFriendsСontainer';
 import { Routes, Route } from 'react-router-dom';
-import ProfileContainer from './components/Profile/ProfileContainer';
+import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
@@ -32,7 +32,7 @@ const App = ({ isInit, initializeApp }) => {
       <MyFriendsContainer />
       <Routes>
         <Route element={<CheckAuth/>}>
-          <Route path='/profile/:userID?' element={<ProfileContainer />} />
+          <Route path='/profile/:userID?' element={<Profile />} />
           <Route path='/dialogs/*' element={<Dialogs />} />
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
