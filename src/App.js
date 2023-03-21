@@ -11,7 +11,8 @@ import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import UsersContainer from './components/Users/UsersContainer';
+// import UsersContainer from './components/Users/UsersContainer';
+import Users from './components/Users/Users';
 import Login from './components/Login/Login';
 import Preloader from './components/common/Preloader/Preloader';
 import CheckAuth from './components/Layout/CheckAuth';
@@ -37,7 +38,7 @@ const App = ({ isInit, initializeApp }) => {
           <Route path='/news' element={<News />} />
           <Route path='/music' element={<Music />} />
           <Route path='/settings' element={<Settings />} />
-          <Route path='/users' element={<UsersContainer />} />
+          <Route path='/users' element={<Users />} />
         </Route>
         <Route path='/login' element={<Login />} />
       </Routes>

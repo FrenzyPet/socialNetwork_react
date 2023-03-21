@@ -1,12 +1,41 @@
 import classes from './Users.module.css';
 import User from './User/User';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { requestUsers, changePage, followThunk, unfollowThunk } from "../../redux/users-reducer";
+import Preloader from "../common/Preloader/Preloader";
 
 const Users = (props) => {
+  const { 
+    usersData,
+    pageSize,
+    totalCount, 
+    currentPage, 
+    isFetching, 
+    followingInProgress
+  } = useSelector(state => state.usersPage)
+  const dispatch = useDispatch()
 
-  const pagesCount = Math.ceil(props.totalCount / props.pageSize)
+  useEffect(() => {
+    dispatch(requestUsers(currentPage, pageSize))
+  }, [dispatch, currentPage, pageSize]);  
+
+  const onPageChanged = (pageNumber) => {
+    dispatch(changePage(pageNumber, pageSize))
+  }
+
+  const onFollow = (userID) => {
+    dispatch(followThunk(userID))
+  }
+
+  const onUnfollow = (userID) => {
+    dispatch(unfollowThunk(userID))
+  }
+
+  const pagesCount = Math.ceil(totalCount / pageSize)
   let pages = Array.from({ length: pagesCount }, (_, index) => index + 1);
 
-  const curP = props.currentPage;
+  const curP = currentPage;
   let slicedPages = []
   if (curP >= 1 && curP <=6) {
     slicedPages = pages.slice(0, 11)
@@ -18,14 +47,14 @@ const Users = (props) => {
 
   const paginationElements = slicedPages.map(item => {
     return (
-      <li key={item} className={classes.pagination__item + (props.currentPage === item ? ` ${classes.pagination__item_current}` : '')}
-          onClick={ () => props.onPageChanged(item) }>
+      <li key={item} className={classes.pagination__item + (currentPage === item ? ` ${classes.pagination__item_current}` : '')}
+          onClick={ () => onPageChanged(item) }>
             {item}
       </li>
     )
   })
 
-  const usersElement = props.usersData.map(item => (
+  const usersElement = usersData.map(item => (
         <User
           key={item.id}
           id={item.id}
@@ -33,13 +62,14 @@ const Users = (props) => {
           photos={item.photos}
           status={item.status}
           followed={item.followed}
-          followingInProgress={props.followingInProgress}
-          onFollow={props.onFollow}
-          onUnfollow={props.onUnfollow}
+          followingInProgress={followingInProgress}
+          onFollow={onFollow}
+          onUnfollow={onUnfollow}
           />
       ))
 
-  return (
+  return (<>
+    {isFetching ? <Preloader/> : null}
     <div className={classes.users}>
       <ul className={classes.pagination}>
         { paginationElements }
@@ -53,6 +83,7 @@ const Users = (props) => {
       </ul>
       <button className={classes.users__button} type='button'>Показать еще...</button>
     </div>
+  </>
   )
 
 }
