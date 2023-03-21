@@ -34,8 +34,8 @@ const Users = (props) => {
           status={item.status}
           followed={item.followed}
           followingInProgress={props.followingInProgress}
-          unfollowThunk={props.unfollowThunk}
-          followThunk={props.followThunk}
+          onFollow={props.onFollow}
+          onUnfollow={props.onUnfollow}
           />
       ))
 

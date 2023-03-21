@@ -1,55 +1,43 @@
-import React from "react";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { requestUsers, changePage, unfollowThunk, followThunk } from "../../redux/users-reducer";
-import { getUsersDataSELECT, getPageSize, getTotalCount, getCurrentPage, getIsFetching, getFollowingInProgress } from "../../redux/users-selectors";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { requestUsers, changePage, followThunk, unfollowThunk } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
-import withAuthRedirect from "../HOC/withAuthRedirect";
+// import withAuthRedirect from "../HOC/withAuthRedirect";
 import Users from "./Users";
 
-class UsersAPIContainer extends React.Component {
-  componentDidMount() {
-    this.props.requestUsers(this.props.currentPage, this.props.pageSize)
+const UsersContainer = () => {
+
+  const { usersData, pageSize, totalCount, currentPage, isFetching, followingInProgress } = useSelector(state => state.usersPage)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(requestUsers(currentPage, pageSize))
+  }, [dispatch, currentPage, pageSize]);  
+
+  const onPageChanged = (pageNumber) => {
+    dispatch(changePage(pageNumber, pageSize))
   }
 
-  onPageChanged = (pageNumber) => {
-    this.props.changePage(pageNumber, this.props.pageSize)
+  const onFollow = (userID) => {
+    dispatch(followThunk(userID))
   }
 
-  render() {
-    return (<>
-      {this.props.isFetching ? <Preloader/> : null}
-      <Users totalCount={this.props.totalCount}
-             pageSize={this.props.pageSize}
-             currentPage={this.props.currentPage}
-             onPageChanged={this.onPageChanged}
-             usersData={this.props.usersData}
-             followingInProgress={this.props.followingInProgress}
-             unfollowThunk={this.props.unfollowThunk}
-             followThunk={this.props.followThunk}/>
-    </>)
+  const onUnfollow = (userID) => {
+    dispatch(unfollowThunk(userID))
   }
+
+  return (<>
+    {isFetching ? <Preloader/> : null}
+    <Users  pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChanged={onPageChanged}
+            usersData={usersData}
+            totalCount={totalCount}
+            followingInProgress={followingInProgress}
+            onFollow={onFollow}
+            onUnfollow={onUnfollow}
+            />
+  </>)
 }
-
-const mapStateToProps = (state) => {
-  return {
-    usersData: getUsersDataSELECT(state),
-    pageSize: getPageSize(state),
-    totalCount: getTotalCount(state),
-    currentPage: getCurrentPage(state),
-    isFetching: getIsFetching(state),
-    followingInProgress: getFollowingInProgress(state)
-  }
-}
-
-const UsersContainer = compose(
-  connect(mapStateToProps, {
-    requestUsers,
-    changePage,
-    unfollowThunk,
-    followThunk
-  }),
-  withAuthRedirect
-)(UsersAPIContainer)
 
 export default UsersContainer;
