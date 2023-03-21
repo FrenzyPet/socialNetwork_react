@@ -1,7 +1,16 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { logOut } from '../../redux/auth-reducer';
 import classes from './Header.module.css';
 
-const Header = (props) => {
+const Header = () => {
+  const { isAuth, login } = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+
+  const onLogout = () => {
+    dispatch(logOut())
+  }
+
   return (
     <header className={classes.header}>
       <div className={classes.logoContainer}>
@@ -9,10 +18,10 @@ const Header = (props) => {
         <h1 className={classes.title}>FrenzyPulse</h1>
       </div>
       <div className={classes.userMenu}>
-        { props.isAuth
+        { isAuth
             ? <div className={classes.login__wrapper}>
-                <span className={classes.login}>{props.login}</span>
-                <button className={classes.button} onClick={props.logOut} type='button'>Logout</button>
+                <span className={classes.login}>{login}</span>
+                <button className={classes.button} onClick={onLogout} type='button'>Logout</button>
               </div>
             : <NavLink className={classes.button} to='/login'>Login</NavLink>
         }

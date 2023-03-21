@@ -1,26 +1,28 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import classes from './App.module.css';
-import HeaderContainer from './components/Header/HeaderContainer';
+import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
-import MyFriendsContainer from './components/MyFriends/MyFriendsСontainer';
+import MyFriends from './components/MyFriends/MyFriends';
 import { Routes, Route } from 'react-router-dom';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-// import UsersContainer from './components/Users/UsersContainer';
 import Users from './components/Users/Users';
 import Login from './components/Login/Login';
 import Preloader from './components/common/Preloader/Preloader';
 import CheckAuth from './components/Layout/CheckAuth';
 
-const App = ({ isInit, initializeApp }) => {
+const App = () => {
+  const isInit = useSelector(state => state.app.isInit)
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    initializeApp();
-  }, [initializeApp]);
+    dispatch(initializeApp());
+  }, [dispatch]);
 
   if (!isInit) {
     return <Preloader />;
@@ -28,9 +30,9 @@ const App = ({ isInit, initializeApp }) => {
 
   return (
     <div className={classes.wrapper}>
-      <HeaderContainer />
+      <Header />
       <Navigation />
-      <MyFriendsContainer />
+      <MyFriends />
       <Routes>
         <Route element={<CheckAuth/>}>
           <Route path='/profile/:userID?' element={<Profile />} />
@@ -46,10 +48,4 @@ const App = ({ isInit, initializeApp }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isInit: state.app.isInit,
-  };
-};
-
-export default connect(mapStateToProps, { initializeApp })(App);
+export default App;
