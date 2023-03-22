@@ -2,6 +2,7 @@ import classes from './User.module.css';
 import avatar from '../../../assets/images/user-avatar.png';
 import { NavLink } from 'react-router-dom';
 
+
 const User = (props) => {
   return (
     <li className={classes.userItem}>

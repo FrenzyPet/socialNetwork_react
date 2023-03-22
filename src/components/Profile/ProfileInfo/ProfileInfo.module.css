@@ -34,3 +34,7 @@
 .status__wrapper {
   cursor: pointer
 }
+
+.statusbar {
+  color: rgba(134, 131, 131, 0.664);
+}

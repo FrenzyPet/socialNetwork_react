@@ -13,7 +13,6 @@ const MyFriends = () => {
   }, [dispatch])
 
   useEffect(() => {
-    console.log('друг удален')
   }, [friendsData])
 
   const friendsElements = friendsData.map( (item) => (<Friend id={item.id} name={item.name} photos={item.photos} key={item.id}/>));

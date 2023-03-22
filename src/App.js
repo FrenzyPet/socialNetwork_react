@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { initializeApp } from './redux/app-reducer';
 import classes from './App.module.css';
@@ -9,13 +9,13 @@ import { Routes, Route } from 'react-router-dom';
 import Preloader from './components/common/Preloader/Preloader';
 import CheckAuth from './components/Layout/CheckAuth';
 
-const Profile = React.lazy(() => import('./components/Profile/Profile'));
-const Dialogs = React.lazy(() => import('./components/Dialogs/Dialogs'));
-const News = React.lazy(() => import('./components/News/News'));
-const Settings = React.lazy(() => import('./components/Settings/Settings'));
-const Users = React.lazy(() => import('./components/Users/Users'));
-const Login = React.lazy(() => import('./components/Login/Login'));
-const Music = React.lazy(() => import('./components/Music/Music'));
+const Profile = lazy(() => import('./components/Profile/Profile'));
+const Dialogs = lazy(() => import('./components/Dialogs/Dialogs'));
+const News = lazy(() => import('./components/News/News'));
+const Settings = lazy(() => import('./components/Settings/Settings'));
+const Users = lazy(() => import('./components/Users/Users'));
+const Login = lazy(() => import('./components/Login/Login'));
+const Music = lazy(() => import('./components/Music/Music'));
 
 const App = () => {
   const isInit = useSelector(state => state.app.isInit)

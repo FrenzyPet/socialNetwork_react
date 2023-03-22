@@ -1,10 +1,14 @@
-import classes from './Post.module.css'
+import classes from './Post.module.css';
+import avatar from '../../../../assets/images/user-avatar.png';
+import { useSelector } from 'react-redux';
 
 const Post = (props) => {
+
+  const profile = useSelector(state => state.profilePage.profile)
   return (
     <li className={classes.item}>
       <div className={classes.item__avatarWrapper}>
-        <img className={classes.item__avatarImage} src='https://bipbap.ru/wp-content/uploads/2022/11/1652235714_41-kartinkin-net-p-prikolnie-kartinki-dlya-stima-44.jpg' alt='img'></img>
+        <img className={classes.item__avatarImage} src={profile.photos.large || avatar} alt='img'></img>
       </div>
       <p className={classes.item__text}>{props.message}</p>
       <p className={classes.item__likes}>Likes: {props.likesCount}</p>
