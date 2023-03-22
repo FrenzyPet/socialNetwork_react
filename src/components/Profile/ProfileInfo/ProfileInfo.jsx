@@ -2,17 +2,17 @@ import Preloader from '../../common/Preloader/Preloader';
 import classes from './ProfileInfo.module.css';
 import avatar from '../../../assets/images/user-avatar.png';
 import ProfileStatus from './ProfileStatus';
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getUserProfile, getStatus, updateStatus } from "../../../redux/profile-reducer";
+import { getUserProfile, getStatus, updateStatus, updatePhoto } from "../../../redux/profile-reducer";
 
 const ProfileInfo = () => {
-  const { profile, status} = useSelector(state => state.profilePage)
+  const { profile, status} = useSelector(state => state.profilePage, shallowEqual)
   const userID = useSelector(state => state.auth.userID)
   const match = { params: useParams()}
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     let currentUserID = match.params.userID;
     if (!currentUserID) {
@@ -25,7 +25,11 @@ const ProfileInfo = () => {
   const onUpdateStatus = (statusText) => {
     dispatch(updateStatus(statusText))
   }
-  
+
+  const onUpdatePhoto = (evt) => {
+    dispatch(updatePhoto(evt.target.files[0]))
+  }
+
   if (!profile) {
     return <Preloader/>
   }
@@ -39,6 +43,14 @@ const ProfileInfo = () => {
         <div className={classes.data}>
           <p className={classes.name}>{profile.fullName}</p>
           <ProfileStatus status={status} updateStatus={onUpdateStatus}/>
+          { !match.params.userID &&
+            <div>
+              <label className={classes.label}>
+                Обновить фото
+                <input className={classes.input__photo} onChange={onUpdatePhoto} type='file'/>
+              </label>
+            </div>
+          }
         </div>
       </div>
     </div>

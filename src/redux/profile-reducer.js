@@ -3,6 +3,7 @@ import { profileAPI } from "../api/api";
 const ADD_POST = 'frenzyPulse/profile/ADD-POST-STATE';
 const SET_USER_PROFILE = 'frenzyPulse/profile/SET_USER_PROFILE';
 const SET_USER_STATUS = 'frenzyPulse/profile/SET_USER_STATUS';
+const SET_PHOTO = 'frenzyPulse/profile/SET_PHOTO';
 
 const initialState = {
   postsData: [
@@ -44,6 +45,13 @@ const profileReducer = (state = initialState, action) => {
       };
     }
 
+    case SET_PHOTO: {
+      return {
+        ...state,
+        profile: {...state.profile, photos: action.payload}
+      };
+    }
+
     default:
       return state;
   }
@@ -52,6 +60,7 @@ const profileReducer = (state = initialState, action) => {
 export const addPost = (postText) => ({type: ADD_POST, payload: postText})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setUserStatus = (statusText) => ({type: SET_USER_STATUS, status: statusText})
+export const setPhoto = (photos) => ({type: SET_PHOTO, payload: photos})
 
 export const getUserProfile = (userID) => async (dispatch) => {
   const data = await profileAPI.getUserProfile(userID)
@@ -67,6 +76,13 @@ export const updateStatus = (statusText) => async (dispatch) => {
   const response = await profileAPI.updateStatus(statusText)
   if (response.data.resultCode === 0) {
     dispatch(setUserStatus(statusText))
+  }
+}
+
+export const updatePhoto = (file) => async (dispatch) => {
+  const response = await profileAPI.updatePhoto(file)
+  if (response.data.resultCode === 0) {
+    dispatch(setPhoto(response.data.data.photos))
   }
 }
 

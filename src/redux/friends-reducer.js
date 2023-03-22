@@ -43,7 +43,7 @@ export const addFriend = (friend) => ({ type: ADD_FRIEND, payload: friend })
 export const deleteFriend = (friendID) => ({ type: DELETE_FRIEND, payload: friendID })
 
 export const requestFriends = () => async (dispatch) => { /* Thunk */
-  const data = await usersAPI.getUsers(1, 100);
+  const data = await usersAPI.getUsers(1, 20);
   dispatch(setFriends(data.items.filter((item) => item.followed)));
 }
 
