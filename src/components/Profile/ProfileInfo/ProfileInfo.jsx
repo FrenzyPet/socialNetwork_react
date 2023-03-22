@@ -33,7 +33,7 @@ const ProfileInfo = () => {
   if (!profile) {
     return <Preloader/>
   }
-  
+
   return (
     <div className={classes.profileInfo}>
       <div className={classes.info}>
