@@ -1,11 +1,22 @@
 import classes from './MyFriends.module.css';
 import Friend from './Friend/Friend';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { requestFriends } from '../../redux/friends-reducer';
 
 const MyFriends = () => {
   const friendsData = useSelector(state => state.friendsPage.friendsData)
+  const dispatch = useDispatch();
 
-  const friendsElements = friendsData.map( (item) => (<Friend id={item.id} name={item.name} avatar={item.avatar} key={item.id}/>));
+  useEffect(() => {
+    dispatch(requestFriends())
+  }, [dispatch])
+
+  useEffect(() => {
+    console.log('друг удален')
+  }, [friendsData])
+
+  const friendsElements = friendsData.map( (item) => (<Friend id={item.id} name={item.name} photos={item.photos} key={item.id}/>));
 
   return (
     <section className={classes.friends}>

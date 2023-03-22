@@ -88,7 +88,7 @@ export const toggleFollowingProgress = (value, userID) => ({ type: TOGGLE_FOLLOW
 
 export const requestUsers = (currentPage, pageSize) => async (dispatch) => { /* Thunk */
   dispatch(setIsFetching(true))
-  const data = await usersAPI.getUsers(currentPage,pageSize)
+  const data = await usersAPI.getUsers(currentPage, pageSize)
   dispatch(setIsFetching(false));
   dispatch(setUsers(data.items));
   dispatch(setTotalUsersCount(data.totalCount));

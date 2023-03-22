@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { requestUsers, changePage, followThunk, unfollowThunk } from "../../redux/users-reducer";
 import Preloader from "../common/Preloader/Preloader";
 import Pagination from '../common/Pagination/Pagination';
+import { deleteFriend, addFriend } from '../../redux/friends-reducer';
 
 const Users = (props) => {
   const { 
@@ -15,6 +16,7 @@ const Users = (props) => {
     isFetching, 
     followingInProgress
   } = useSelector(state => state.usersPage)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -27,10 +29,12 @@ const Users = (props) => {
 
   const onFollow = (userID) => {
     dispatch(followThunk(userID))
+    dispatch(addFriend(usersData.find( item => item.id === userID)))
   }
-
+  
   const onUnfollow = (userID) => {
     dispatch(unfollowThunk(userID))
+    dispatch(deleteFriend(userID))
   }
 
   const usersElement = usersData.map(item => (
