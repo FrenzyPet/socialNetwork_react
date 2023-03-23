@@ -1,11 +1,9 @@
 import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
 import { updatePhoto } from '../../../redux/profile-reducer'
 import style from './ModalPhoto.module.css'
 
-const ModalPhoto = ({ isPhotoModal, setPhotoModal }) => {
+const ModalPhoto = ({ isPhotoModal, setPhotoModal, params }) => {
   const dispatch = useDispatch()
-  const params = useParams()
 
   const onUpdatePhoto = (evt) => {
     dispatch(updatePhoto(evt.target.files[0]))
@@ -18,7 +16,7 @@ const ModalPhoto = ({ isPhotoModal, setPhotoModal }) => {
         <h1 className={style.title}>Загрузка новой фотографии</h1>
         <div className={style.description}>Друзьям будет проще узнать вас, если вы загрузите свою настоящую фотографию.</div>
         <button className={style.closeButton} onClick={() => setPhotoModal(!isPhotoModal)} type="button"/>
-        { !params.userID &&
+        { !params &&
             <div className={style.input__wrapper}>
               <label className={style.label}>
                 Загрузить новое фото
@@ -26,7 +24,6 @@ const ModalPhoto = ({ isPhotoModal, setPhotoModal }) => {
               </label>
             </div>
           }
-
       </div>
     </div>
   )

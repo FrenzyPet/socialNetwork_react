@@ -8,9 +8,12 @@ import { useEffect } from 'react';
 import { getUserProfile, getStatus, updateStatus } from "../../../redux/profile-reducer";
 import ModalPhoto from './ModalPhoto';
 import { useState } from 'react';
+import AboutPersonModal from './AboutPersonModal';
+import iconInfo from '../../../assets/images/info-icon.svg'
 
 const ProfileInfo = () => {
   const [isPhotoModal, setPhotoModal] = useState(false)
+  const [isAboutModal, setAboutModal] = useState(false)
   const { profile, status} = useSelector(state => state.profilePage, shallowEqual)
   const userID = useSelector(state => state.auth.userID)
   const match = { params: useParams()}
@@ -48,9 +51,14 @@ const ProfileInfo = () => {
         <div className={classes.data}>
           <p className={classes.name}>{profile.fullName}</p>
           <ProfileStatus status={status} updateStatus={onUpdateStatus}/>
+          <div className={classes.detailsWrapper} onClick={() => setAboutModal(!isAboutModal)}>
+            <img className={classes.detailsIcon} src={iconInfo} width='12' height='12' alt="icon" />
+            <span className={classes.detailsTitle}>Подробнее</span>
+          </div>
         </div>
       </div>
-      {isPhotoModal && <ModalPhoto setPhotoModal={setPhotoModal} isPhotoModal={isPhotoModal}/>}
+      {isAboutModal && <AboutPersonModal setAboutModal={setAboutModal} isAboutModal={isAboutModal} params={match.params.userID}/>}
+      {isPhotoModal && <ModalPhoto setPhotoModal={setPhotoModal} isPhotoModal={isPhotoModal} params={match.params.userID}/>}
     </div>
   )
 }
