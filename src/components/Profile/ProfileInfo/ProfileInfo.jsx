@@ -5,9 +5,12 @@ import ProfileStatus from './ProfileStatus';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getUserProfile, getStatus, updateStatus, updatePhoto } from "../../../redux/profile-reducer";
+import { getUserProfile, getStatus, updateStatus } from "../../../redux/profile-reducer";
+import ModalPhoto from './ModalPhoto';
+import { useState } from 'react';
 
 const ProfileInfo = () => {
+  const [isPhotoModal, setPhotoModal] = useState(false)
   const { profile, status} = useSelector(state => state.profilePage, shallowEqual)
   const userID = useSelector(state => state.auth.userID)
   const match = { params: useParams()}
@@ -26,8 +29,10 @@ const ProfileInfo = () => {
     dispatch(updateStatus(statusText))
   }
 
-  const onUpdatePhoto = (evt) => {
-    dispatch(updatePhoto(evt.target.files[0]))
+  const onPhotoClick = () => {
+    if (!match.params.userID) {
+      setPhotoModal(!isPhotoModal)
+    }
   }
 
   if (!profile) {
@@ -37,22 +42,15 @@ const ProfileInfo = () => {
   return (
     <div className={classes.profileInfo}>
       <div className={classes.info}>
-        <div className={classes.avatar}>
+        <div className={classes.avatar} onClick={onPhotoClick}>
           <img className={classes.photo} src={profile.photos.large || avatar} width='100' height='100' alt='profile avatar'></img>
         </div>
         <div className={classes.data}>
           <p className={classes.name}>{profile.fullName}</p>
           <ProfileStatus status={status} updateStatus={onUpdateStatus}/>
-          { !match.params.userID &&
-            <div>
-              <label className={classes.label}>
-                Обновить фото
-                <input className={classes.input__photo} onChange={onUpdatePhoto} type='file'/>
-              </label>
-            </div>
-          }
         </div>
       </div>
+      {isPhotoModal && <ModalPhoto setPhotoModal={setPhotoModal} isPhotoModal={isPhotoModal}/>}
     </div>
   )
 }

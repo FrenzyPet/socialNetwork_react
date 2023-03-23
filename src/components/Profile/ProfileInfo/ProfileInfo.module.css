@@ -9,6 +9,7 @@
 
 .avatar {
   margin-right: 30px;
+  cursor: pointer;
 }
 
 .photo {
@@ -38,24 +39,4 @@
 .statusbar {
   color: rgba(134, 131, 131, 0.664);
   margin-bottom: 15px;
-}
-
-.input__photo {
-  opacity: 0;
-  visibility: hidden;
-  position: absolute;
-}
-
-.label {
-  align-self: flex-start;
-  padding: 5px 10px;
-  cursor: pointer;
-  background-color: rgba(0, 153, 125, 0.7);
-  border-radius: 4px;
-  color: white;
-  font-size: 12px;
-}
-
-.label:hover {
-  background-color: rgba(0, 153, 125, 0.9);
 }
