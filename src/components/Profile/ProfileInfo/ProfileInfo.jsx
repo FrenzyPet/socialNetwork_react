@@ -59,10 +59,12 @@ const ProfileInfo = () => {
               <img className={classes.detailsIcon} src={iconInfo} width='12' height='12' alt="icon" />
               <span className={classes.detailsTitle}>Подробнее</span>
             </div>
-            <div className={classes.detailsWrapper} onClick={() => setEditFormModal(true)}>
-              <img className={classes.detailsIcon} src={iconSettings} width='12' height='12' alt="icon" />
-              <span className={classes.detailsTitle}>Редактировать профиль</span>
-            </div>
+           { !match.params.userID &&
+              <div className={classes.detailsWrapper} onClick={() => setEditFormModal(true)}>
+                <img className={classes.detailsIcon} src={iconSettings} width='12' height='12' alt="icon" />
+                <span className={classes.detailsTitle}>Редактировать профиль</span>
+              </div>
+            }
           </div>
         </div>
       </div>

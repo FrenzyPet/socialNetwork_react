@@ -5,22 +5,25 @@ const InfoField = (props) => {
   return (
     <div className={style.infoField}>
       <b className={style.infoField__name}>{props.name}</b>
-      <div className={style.infoField__value}>{props.value}</div>
+      <div className={style.infoField__value}>
+        { 
+          props.value.indexOf('http') === 0
+            ? (<a href={props.value}>{props.value}</a>)
+            : props.value
+        }
+      </div>
     </div>
   )
 }
 
 const AboutPersonModal = ({ setAboutModal }) => {
-  // const profile = useSelector(state => state.profilePage.profile)
   const {fullName, aboutMe, contacts, lookingForAJob, lookingForAJobDescription} = useSelector(state => state.profilePage.profile)
-  // console.log('profile', profile)
   return (
     <div className={style.about__wrapper}>
       <div className={style.about}>
         <div className={style.titleWrapper}>
           <h1 className={style.title}>Подробная информация</h1>
           <div className={style.buttonWrapper}>
-            {/* {!params && <button className={style.editButton} type="button">Редактировать</button>} */}
             <button className={style.closeButton} onClick={() => setAboutModal(false)} type="button"/>
           </div>
         </div>
@@ -42,7 +45,7 @@ const AboutPersonModal = ({ setAboutModal }) => {
             <InfoField name='Ищу работу:' value={lookingForAJob ? 'Да' : 'Нет'}/>
             {
               lookingForAJob &&
-              <InfoField name='Стек технологий:' value={lookingForAJobDescription}/>
+              <InfoField name='Стек:' value={lookingForAJobDescription}/>
             }
           </div>
         </div>
