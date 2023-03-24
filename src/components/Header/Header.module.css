@@ -5,13 +5,14 @@
   padding: 10px;
   display: flex;
   align-items: center;
-  min-height: 100px;
+  min-height: 70px;
   display: flex;
   align-items: center;
 }
 
 .logoContainer {
   display: flex;
+  align-items: center;
 }
 
 .logo {
@@ -20,7 +21,9 @@
 
 
 .title {
+  margin: 0;
   font-size: 30px;
+  line-height: 36px;
   color: #00669a;
 }
 

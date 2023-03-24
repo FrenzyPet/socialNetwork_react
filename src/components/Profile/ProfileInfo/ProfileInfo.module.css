@@ -39,6 +39,13 @@
   color: rgba(134, 131, 131, 0.664);
 }
 
+.settings {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px
+}
+
 .detailsWrapper {
   cursor: pointer;
   position: relative;
@@ -53,15 +60,15 @@
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
-  margin-left: 25px;
+  margin-left: 18px;
   color: #4b4b4b;
 }
 
 .detailsIcon {
   position: absolute;
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   top: 50%;
   transform: translateY(-50%);
 }

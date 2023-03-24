@@ -6,14 +6,17 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getUserProfile, getStatus, updateStatus } from "../../../redux/profile-reducer";
-import ModalPhoto from './ModalPhoto';
+import PhotoModal from './PhotoModal/PhotoModal';
 import { useState } from 'react';
-import AboutPersonModal from './AboutPersonModal';
+import AboutPersonModal from './AboutPersonModal/AboutPersonModal';
+import EditFormModal from './EditFormModal/EditFormModal';
 import iconInfo from '../../../assets/images/info-icon.svg'
+import iconSettings from '../../../assets/images/settings-icon.svg'
 
 const ProfileInfo = () => {
   const [isPhotoModal, setPhotoModal] = useState(false)
   const [isAboutModal, setAboutModal] = useState(false)
+  const [isEditFormModal, setEditFormModal] = useState(false)
   const { profile, status} = useSelector(state => state.profilePage, shallowEqual)
   const userID = useSelector(state => state.auth.userID)
   const match = { params: useParams()}
@@ -51,14 +54,21 @@ const ProfileInfo = () => {
         <div className={classes.data}>
           <p className={classes.name}>{profile.fullName}</p>
           <ProfileStatus status={status} updateStatus={onUpdateStatus}/>
-          <div className={classes.detailsWrapper} onClick={() => setAboutModal(!isAboutModal)}>
-            <img className={classes.detailsIcon} src={iconInfo} width='12' height='12' alt="icon" />
-            <span className={classes.detailsTitle}>Подробнее</span>
+          <div className={classes.settings}>
+            <div className={classes.detailsWrapper} onClick={() => setAboutModal(true)}>
+              <img className={classes.detailsIcon} src={iconInfo} width='12' height='12' alt="icon" />
+              <span className={classes.detailsTitle}>Подробнее</span>
+            </div>
+            <div className={classes.detailsWrapper} onClick={() => setEditFormModal(true)}>
+              <img className={classes.detailsIcon} src={iconSettings} width='12' height='12' alt="icon" />
+              <span className={classes.detailsTitle}>Редактировать профиль</span>
+            </div>
           </div>
         </div>
       </div>
-      {isAboutModal && <AboutPersonModal setAboutModal={setAboutModal} isAboutModal={isAboutModal} params={match.params.userID}/>}
-      {isPhotoModal && <ModalPhoto setPhotoModal={setPhotoModal} isPhotoModal={isPhotoModal} params={match.params.userID}/>}
+      {isAboutModal && <AboutPersonModal setAboutModal={setAboutModal}/>}
+      {isEditFormModal && <EditFormModal setEditFormModal={setEditFormModal}/>}
+      {isPhotoModal && <PhotoModal setPhotoModal={setPhotoModal}/>}
     </div>
   )
 }

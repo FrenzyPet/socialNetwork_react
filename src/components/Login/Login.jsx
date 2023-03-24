@@ -19,29 +19,29 @@ const LoginForm = (props) => {
         <form className={style.login__form} onSubmit={props.handleSubmit}>
           <label className={style.form__label}>
             <Field name='email'
-                  type='email'
-                  typefield='input'
-                  placeholder='Введите email'
-                  component={FormField}
-                  validate={required}
-                  right='true'
+                   type='email'
+                   typefield='input'
+                   placeholder='Введите email'
+                   component={FormField}
+                   validate={required}
+                   right='true'
             />
           </label>
           <label className={style.form__label}>
             <Field name='password'
-                  type='password'
-                  typefield='input'
-                  placeholder='Введите пароль'
-                  component={FormField}
-                  validate={required}
-                  right='true'
+                   type='password'
+                   typefield='input'
+                   placeholder='Введите пароль'
+                   component={FormField}
+                   validate={required}
+                   right='true'
             />
           </label>
           <label className={style.form__label + ' ' + style.form__label__checkbox}>
             <Field name='rememberMe'
-                  className={style.form__input__checkbox}
-                  type='checkbox'
-                  component='input'
+                   className={style.form__input__checkbox}
+                   type='checkbox'
+                   component='input'
             />
             Запомнить вход
           </label>

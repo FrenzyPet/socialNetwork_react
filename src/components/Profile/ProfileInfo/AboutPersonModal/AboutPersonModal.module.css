@@ -17,19 +17,29 @@
   margin: 0 auto;
   padding: 20px;
   color: white;
+  top: -100px;
   background-color: #4ab0a4;
   box-shadow: 0 0 50px 25px rgba(0, 0, 0, 0.15);
   border-radius: 15px;
 }
 
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.buttonWrapper {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .closeButton {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  top: 25px;
-  right: 25px;
-  background-repeat: no-repeat;
-  background-position: center;
+  position: relative;
+  width: 26px;
+  height: 26px;
   background-color: white;
   border: none;
   border-radius: 50%;
@@ -41,7 +51,7 @@
   content: '';
   position: absolute;
   width: 2px;
-  height: 15px;
+  height: 13px;
   background-color: black;
   top: 50%;
   left: 50%;
@@ -63,7 +73,6 @@
 
 .title {
   margin: 0;
-  margin-bottom: 20px;
 }
 
 .infoProfile {
@@ -76,7 +85,7 @@
   padding: 7px 15px;
   background-color: white;
   color: black;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .subtitle {
@@ -92,6 +101,7 @@
 }
 
 .infoField__name {
+  min-width: 75px;
   margin-right: 10px;
   font-size: 12px;
 }

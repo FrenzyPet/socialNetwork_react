@@ -17,6 +17,7 @@
   margin: 0 auto;
   padding: 20px;
   color: white;
+  top: -100px;
   background-color: #4ab0a4;
   box-shadow: 0 0 50px 25px rgba(0, 0, 0, 0.15);
   border-radius: 15px;
@@ -24,8 +25,8 @@
 
 .closeButton {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   top: 25px;
   right: 25px;
   background-repeat: no-repeat;
@@ -41,7 +42,7 @@
   content: '';
   position: absolute;
   width: 2px;
-  height: 15px;
+  height: 13px;
   background-color: black;
   top: 50%;
   left: 50%;
