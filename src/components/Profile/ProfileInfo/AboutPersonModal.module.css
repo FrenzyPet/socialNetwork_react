@@ -19,7 +19,7 @@
   color: white;
   background-color: #4ab0a4;
   box-shadow: 0 0 50px 25px rgba(0, 0, 0, 0.15);
-  border-radius: 30px;
+  border-radius: 15px;
 }
 
 .closeButton {
@@ -63,5 +63,39 @@
 
 .title {
   margin: 0;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.infoProfile {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section {
+  padding: 7px 15px;
+  background-color: white;
+  color: black;
+  border-radius: 15px;
+}
+
+.subtitle {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.infoField {
+  display: flex;
+  padding-left: 10px;
+  color: rgb(99, 99, 99);
+}
+
+.infoField__name {
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+.infoField__value {
+  font-size: 12px;
 }
