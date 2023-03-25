@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { updatePhoto } from '../../../../redux/profile-reducer'
 import style from './PhotoModal.module.css'
+import ModalWindow from '../../../common/ModalWindow/ModalWindow'
 
 const PhotoModal = ({ setPhotoModal }) => {
   const dispatch = useDispatch()
@@ -11,21 +12,18 @@ const PhotoModal = ({ setPhotoModal }) => {
   }
 
   return (
-    <div className={style.modalWrapper}>
-      <div className={style.modal}>
-        <h1 className={style.title}>Загрузка новой фотографии</h1>
-        <div className={style.description}>Друзьям будет проще узнать вас, если вы загрузите свою настоящую фотографию.</div>
-        <button className={style.closeButton} onClick={() => setPhotoModal(false)} type="button"/>
-        <div className={style.input__wrapper}>
-          <label className={style.label}>
-            Загрузить новое фото
-            <input className={style.input__photo} onChange={onUpdatePhoto} type='file'/>
-          </label>
-        </div>
+    <ModalWindow setIsActive={setPhotoModal} width='500'>
+      <h1 className={style.title}>Загрузка новой фотографии</h1>
+      <div className={style.description}>Друзьям будет проще узнать вас, если вы загрузите свою настоящую фотографию.</div>
+      <button className={style.closeButton} onClick={() => setPhotoModal(false)} type="button"/>
+      <div className={style.input__wrapper}>
+        <label className={style.label}>
+          Загрузить новое фото
+          <input className={style.input__photo} onChange={onUpdatePhoto} type='file'/>
+        </label>
       </div>
-    </div>
+    </ModalWindow>
   )
-
 }
 
 export default PhotoModal;

@@ -17,6 +17,7 @@ const ProfileInfo = () => {
   const [isPhotoModal, setPhotoModal] = useState(false)
   const [isAboutModal, setAboutModal] = useState(false)
   const [isEditFormModal, setEditFormModal] = useState(false)
+  
   const { profile, status} = useSelector(state => state.profilePage, shallowEqual)
   const userID = useSelector(state => state.auth.userID)
   const match = { params: useParams()}
