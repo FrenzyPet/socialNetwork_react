@@ -17,10 +17,10 @@ const InfoField = (props) => {
   )
 }
 
-const AboutPersonModal = ({ setAboutModal }) => {
+const AboutPersonModal = ({ isAboutModal, setAboutModal }) => {
   const {fullName, aboutMe, contacts, lookingForAJob, lookingForAJobDescription} = useSelector(state => state.profilePage.profile)
   return (
-    <ModalWindow setIsActive={setAboutModal} width='500'>
+    <ModalWindow isActive={isAboutModal} setIsActive={setAboutModal} width='500'>
       <div className={style.titleWrapper}>
         <h1 className={style.title}>Подробная информация</h1>
         <div className={style.buttonWrapper}>

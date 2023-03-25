@@ -3,7 +3,7 @@ import { updatePhoto } from '../../../../redux/profile-reducer'
 import style from './PhotoModal.module.css'
 import ModalWindow from '../../../common/ModalWindow/ModalWindow'
 
-const PhotoModal = ({ setPhotoModal }) => {
+const PhotoModal = ({ isPhotoModal, setPhotoModal }) => {
   const dispatch = useDispatch()
 
   const onUpdatePhoto = (evt) => {
@@ -12,7 +12,7 @@ const PhotoModal = ({ setPhotoModal }) => {
   }
 
   return (
-    <ModalWindow setIsActive={setPhotoModal} width='500'>
+    <ModalWindow isActive={isPhotoModal} setIsActive={setPhotoModal} width='500'>
       <h1 className={style.title}>Загрузка новой фотографии</h1>
       <div className={style.description}>Друзьям будет проще узнать вас, если вы загрузите свою настоящую фотографию.</div>
       <button className={style.closeButton} onClick={() => setPhotoModal(false)} type="button"/>

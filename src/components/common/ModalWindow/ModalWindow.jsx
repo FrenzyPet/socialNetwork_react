@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import style from './ModalWindow.module.css'
 
-const ModalWindow = ({setIsActive, children, width}) => {
+const ModalWindow = ({isActive, setIsActive, children, width}) => {
   useEffect(() => {
     const handleEscKey = (evt) => {
       if (evt.keyCode === 27) {
@@ -17,8 +17,11 @@ const ModalWindow = ({setIsActive, children, width}) => {
   }, [setIsActive]);
 
   return (
-    <div className={style.modal__wrapper} onClick={() => setIsActive()}>
-      <div className={style.modal__content} style={{width: `${width}px`}} onClick={evt => evt.stopPropagation()}>
+    <div
+      className={isActive ? (style.backsheet + ' ' + style.backsheet__active) : `${style.backsheet}`}
+      onClick={() => setIsActive()}
+      >
+      <div className={isActive ? style.content + ' ' + style.content__active : style.content} style={{width: `${width}px`}} onClick={evt => evt.stopPropagation()}>
         {children}
       </div>
     </div>

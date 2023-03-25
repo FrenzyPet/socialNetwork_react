@@ -4,7 +4,7 @@ import { updateProfile } from '../../../../redux/profile-reducer';
 import ModalWindow from '../../../common/ModalWindow/ModalWindow';
 import style from './EditFormModal.module.css'
 
-const EditFormModal = ( { setEditFormModal }) => {
+const EditFormModal = ( { isEditFormModal, setEditFormModal }) => {
   const dispatch = useDispatch()
   const profile = useSelector(state => state.profilePage.profile)
  
@@ -15,7 +15,7 @@ const EditFormModal = ( { setEditFormModal }) => {
   }
 
   return (
-    <ModalWindow setIsActive={setEditFormModal} width='500'>
+    <ModalWindow isActive={isEditFormModal} setIsActive={setEditFormModal} width='500'>
       <Form
         initialValues={profile}
         onSubmit={onSubmit}
