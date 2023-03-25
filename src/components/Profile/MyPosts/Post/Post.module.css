@@ -1,11 +1,12 @@
 .item {
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 500px;
   padding: 10px;
   border: 1px solid rgba(0, 153, 125, 0.7);
   border-radius: 5px;
   background-color: white;
+  box-sizing: border-box;
 }
 
 .item__avatarWrapper {
@@ -30,14 +31,3 @@
   margin-left: auto;
   position: relative;
 }
-
-/* .item__likes::before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  background-repeat: no-repeat;
-  z-index: 20;
-} */

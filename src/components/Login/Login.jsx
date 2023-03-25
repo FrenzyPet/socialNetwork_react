@@ -27,16 +27,27 @@ const LoginForm = () => {
     console.log(formData)
     dispatch(logIn(formData.email, formData.password, formData.rememberMe))
   }
+  console.log(errors)
 
   return (
     <form className={style.login__form} onSubmit={handleSubmit(onSubmit)}>
       <label className={style.form__label}>
-        <input {...register('email', {required : true})} type="email" className={style.form__input} placeholder="Введите email"/>
-        {errors.email && <span className={style.error}>Поле обязательно к заполнению</span>}
+        <input
+          {...register('email', {required : "Обязательное поле"})}
+          type="email"
+          className={style.form__input}
+          placeholder="Введите email"
+        />
+        {errors.email && <span className={style.error}>{errors.email.message}</span>}
       </label>
       <label className={style.form__label}>
-        <input {...register('password', {required : true})} type="password" className={style.form__input} placeholder="Введите пароль"/>
-        {errors.password && <span className={style.error}>Поле обязательно к заполнению</span>}
+        <input
+          {...register('password', {required : "Обязательное поле"})}
+          type="password"
+          className={style.form__input}
+          placeholder="Введите пароль"
+        />
+        {errors.password && <span className={style.error}>{errors.email.message}</span>}
       </label>
       <label className={style.form__label + ' ' + style.form__label__checkbox}>
         <input {...register('rememberMe')} type="checkbox" className={style.form__input__checkbox}/>
