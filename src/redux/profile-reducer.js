@@ -86,10 +86,13 @@ export const updatePhoto = (file) => async (dispatch) => {
   }
 }
 
-export const updateProfile = (profile) => async (dispatch) => {
+export const updateProfile = (profile) => async (dispatch, getState) => {
+  const userID = getState().auth.userID
   const response = await profileAPI.updateProfile(profile)
   if (response.data.resultCode === 0) {
-    dispatch(setUserProfile(profile))
+    dispatch(getUserProfile(userID))
+  } else {
+    // throw new Error(response.data.messages[0])
   }
 }
 

@@ -16,11 +16,11 @@ const FormField = ({ keyName, placeholder, type = "text", register, required, is
 const EditFormModal = ( { isEditFormModal, setEditFormModal }) => {
   const profile = useSelector(state => state.profilePage.profile)
   const dispatch = useDispatch()
-  const { handleSubmit, register } = useForm({defaultValues: profile})
+  const { handleSubmit, register, formState: { errors } } = useForm({defaultValues: profile})
  
-  const onSubmit = (formData) => {
-    setEditFormModal(false)
+  const onSubmit = async (formData) => {
     dispatch(updateProfile(formData))
+    setEditFormModal(false)
   }
 
   return (
@@ -35,8 +35,14 @@ const EditFormModal = ( { isEditFormModal, setEditFormModal }) => {
         </div>
         <div className={style.section}>
           <h2 className={style.subtitle}>Общее</h2>
-          <FormField register={register} required keyName="fullName" placeholder="Полное имя"/>
-          <FormField register={register} required keyName="aboutMe" placeholder="Обо мне"/>
+          <div className={style.errorWrapper}>
+            <FormField register={register} required keyName="fullName" placeholder="Полное имя"/>
+            {errors.fullName && <span className={style.error}>Поле обязательно к заполнению</span>}
+          </div>
+          <div className={style.errorWrapper}>
+            <FormField register={register} required keyName="aboutMe" placeholder="Обо мне"/>
+            {errors.aboutMe && <span className={style.error}>Поле обязательно к заполнению</span>}
+          </div>
         </div>
         <div className={style.section}>
           <h2 className={style.subtitle}>Контакты</h2>
@@ -45,7 +51,10 @@ const EditFormModal = ( { isEditFormModal, setEditFormModal }) => {
         <div className={style.section}>
           <h2 className={style.subtitle}>Работа</h2>
           <FormField register={register} keyName="lookingForAJob" placeholder="Ищу работу" type="checkbox"/>
-          <FormField register={register} required keyName="lookingForAJobDescription" placeholder="Стек"/>
+          <div className={style.errorWrapper}>
+            <FormField register={register} required keyName="lookingForAJobDescription" placeholder="Стек"/>
+            {errors.lookingForAJobDescription && <span className={style.error}>Поле обязательно к заполнению</span>}
+          </div>
         </div>
       </form>
     </ModalWindow>
