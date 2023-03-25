@@ -29,14 +29,14 @@ const NewPostForm = () => {
   }
 
   const validateConfig = {
-    required: "Ну напиши что-нибудь",
+    required: "Ну напиши что-нибудь!",
     minLength: {
       value: 5,
-      message: "Напиши пост длиннее 10 символов"
+      message: "Маловато будет..."
     },
     maxLength: {
       value: 300,
-      message: "Пост не может быть длиннее 300 символов. Краткость - сестра таланта :З"
+      message: "Пост не может быть длиннее 300 символов. Краткость - сестра таланта."
     }
   }
 
@@ -54,7 +54,7 @@ const NewPostForm = () => {
               className={textareaClasses.join(' ')}
               placeholder='Что у Вас нового?'
         />
-        {errors.newPost && <span className={style.error}>{errors.newPost.message || "Некоторая хуйня :/"}</span>}
+        {errors.newPost && <span className={style.error}>{errors.newPost.message}</span>}
       </div>
       <button className={style.button} type="submit">Опубликовать</button>
     </form>

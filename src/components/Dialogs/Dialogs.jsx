@@ -1,65 +1,69 @@
-import { Form, Field } from 'react-final-form';
-import { FormField } from '../common/FormsFields/FormsFields';
-import classes from './Dialogs.module.css';
+import style from './Dialogs.module.css';
 import DialogItem from './DialogsItem/DialogsItem';
 import Message from './Message/Message';
-import { maxLength, required, composeValidators } from '../../utils/validators';
 import { sendMessage } from '../../redux/message-reducer';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
-const MessageForm = (props) => {
-
-  const onSubmit = (formData) => {
-    props.onSendMessage(formData.newMessageBody)
-  }
-
-  return (
-    <Form
-      onSubmit={onSubmit}
-    >
-      {(props) => (
-        <form className={classes.dialogs__newMessage} onSubmit={ props.handleSubmit }>
-              <Field
-                    placeholder='Введите текст сообщения'
-                    name='newMessageBody'
-                    component={FormField}
-                    typefield='textarea'
-                    validate={composeValidators(required, maxLength(300))}
-              >
-              </Field>
-              <button className={classes.dialogs__sendButton}>Отправить</button>
-        </form>
-      )}
-    </Form>
-  )
-}
-
-const Dialogs = (props) => {
+const Dialogs = () => {
   const { dialogsData, messagesData } = useSelector(state => state.messagesPage)
-  const dispatch = useDispatch()
-
-  const onSendMessage = (textMessage) => {
-    dispatch(sendMessage(textMessage))
-  }  
 
   let dialogsElements = dialogsData.map((item) => (<DialogItem name={item.name} id={item.id} key={item.id}/>));
   let messagesElements = messagesData.map((item) => (<Message text={item.text} id={item.id} isMine={item.isMine} key={item.id}/>));
 
   return (
-    <div className={classes.dialogs}>
-      <div className={classes.dialogs__list}>
-        <div className={classes.dialogs__search}>
-          <input className={classes.dialogs__search__input} type="text" placeholder='Найти диалог' />
+    <div className={style.dialogs}>
+      <div className={style.dialogs__list}>
+        <div className={style.dialogs__search}>
+          <input className={style.dialogs__search__input} type="text" placeholder='Найти диалог' />
         </div>
         { dialogsElements }
       </div>
-      <div className={classes.dialogs__content}>
-        <div className={classes.dialogs__messageList}>
+      <div className={style.dialogs__content}>
+        <div className={style.dialogs__messageList}>
           { messagesElements }
         </div>
-        <MessageForm onSendMessage={onSendMessage}/>
+        <MessageForm/>
       </div>
     </div>
+  )
+}
+
+const MessageForm = () => {
+
+  const dispatch = useDispatch()
+  const { handleSubmit, register, formState: { errors } } = useForm();
+
+  const onSubmit = (formData) => {
+    dispatch(sendMessage(formData.newMessage))
+  }
+
+  const validateConfig = {
+    required: "Ну напиши что-нибудь!",
+    maxLength: {
+      value: 300,
+      message: "Слишком длинное сообщение. Краткость - сестра таланта."
+    }
+  }
+
+  const textareastyle = [style.textarea]
+
+  if (errors.newMessage) {
+    textareastyle.push(style.textarea__error)
+  }
+
+  return (
+    <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+      <div className={style.textareaWrapper}>
+        <textarea
+              {...register('newMessage', validateConfig)}
+              className={textareastyle.join(' ')}
+              placeholder='Ну давай, ответь'
+        />
+        {errors.newMessage && <span className={style.error}>{errors.newMessage.message}</span>}
+      </div>
+      <button className={style.dialogs__sendButton}>Отправить</button>
+    </form>
   )
 }
 
