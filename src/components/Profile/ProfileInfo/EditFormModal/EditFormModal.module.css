@@ -108,7 +108,7 @@
 
 .subtitle {
   margin: 0;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .form__label {
@@ -120,16 +120,16 @@
 
 .form__labelText {
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 16px;
   font-weight: 700;
   color: grey;
-  min-width: 75px;
+  min-width: 100px;
 }
 
 .form__input {
   flex-grow: 1;
-  font-size: 12px;
+  font-size: 14px;
   padding: 2px 7px;
   border-radius: 4px;
   border: 1px solid grey;

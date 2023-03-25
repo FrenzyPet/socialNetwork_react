@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { Form, Field } from 'react-final-form';
 import style from './Login.module.css';
@@ -7,6 +7,7 @@ import { required } from '../../utils/validators';
 import { logIn } from '../../redux/auth-reducer';
 
 const LoginForm = (props) => {
+
   const onSubmit = (formData) => {
     props.logIn(formData.email, formData.password, formData.rememberMe)
   }
@@ -54,22 +55,24 @@ const LoginForm = (props) => {
 }
 
 const Login = (props) => {
-  if (props.isAuth) {
+
+  const isAuth = useSelector(state => state.auth.isAuth)
+  const dispatch = useDispatch()
+
+  const onLogin = (email, password, rememberMe) => {
+    dispatch(logIn(email, password, rememberMe))
+  }
+
+  if (isAuth) {
     return <Navigate to="/profile"/>
   }
 
   return (
     <div className={style.login}>
       <h1 className={style.login__header}>Вход в FrenzyPulse</h1>
-      <LoginForm logIn={props.logIn}/>
+      <LoginForm logIn={onLogin}/>
     </div>
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuth
-  }
-}
-
-export default connect(mapStateToProps, {logIn})(Login);
+export default Login;

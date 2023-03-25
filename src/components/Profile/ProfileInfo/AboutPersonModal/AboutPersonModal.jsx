@@ -6,7 +6,7 @@ const InfoField = (props) => {
     <div className={style.infoField}>
       <b className={style.infoField__name}>{props.name}</b>
       <div className={style.infoField__value}>
-        { 
+        { props.value &&
           props.value.indexOf('http') === 0
             ? (<a href={props.value}>{props.value}</a>)
             : props.value

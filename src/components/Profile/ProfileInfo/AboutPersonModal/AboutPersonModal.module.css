@@ -91,7 +91,7 @@
 .subtitle {
   margin: 0;
   margin-bottom: 5px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .infoField {
@@ -101,11 +101,11 @@
 }
 
 .infoField__name {
-  min-width: 75px;
+  min-width: 100px;
   margin-right: 10px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .infoField__value {
-  font-size: 12px;
+  font-size: 14px;
 }
