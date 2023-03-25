@@ -16,7 +16,7 @@ const FormField = ({ keyName, placeholder, type = "text", register, required, is
 const EditFormModal = ( { isEditFormModal, setEditFormModal }) => {
   const profile = useSelector(state => state.profilePage.profile)
   const dispatch = useDispatch()
-  const { handleSubmit, register, formState: { errors } } = useForm({defaultValues: profile})
+  const { handleSubmit, register, formState: { errors } } = useForm({ defaultValues: profile })
  
   const onSubmit = async (formData) => {
     dispatch(updateProfile(formData))

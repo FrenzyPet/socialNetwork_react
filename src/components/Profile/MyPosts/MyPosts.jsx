@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import style from './MyPosts.module.css'
 import Post from './Post/Post';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,12 +21,18 @@ const MyPosts = () => {
 
 const NewPostForm = () => {
   const dispatch = useDispatch()
-  const { handleSubmit, register, formState: { errors } } = useForm()
+  const { handleSubmit, register, reset, formState, formState: { errors } } = useForm({defaultValues: {newPost: ''}});
 
   const onSubmit = (formData) => {
     console.log(formData)
     dispatch(addPost(formData.newPost));
   }
+
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({ newPost: '' });
+    }
+  }, [formState, reset]);
 
   const validateConfig = {
     required: "Ну напиши что-нибудь!",

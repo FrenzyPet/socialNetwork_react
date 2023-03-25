@@ -4,6 +4,7 @@ import Message from './Message/Message';
 import { sendMessage } from '../../redux/message-reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
 
 const Dialogs = () => {
   const { dialogsData, messagesData } = useSelector(state => state.messagesPage)
@@ -32,11 +33,17 @@ const Dialogs = () => {
 const MessageForm = () => {
 
   const dispatch = useDispatch()
-  const { handleSubmit, register, formState: { errors } } = useForm();
+  const { handleSubmit, register, reset, formState, formState: { errors } } = useForm({defaultValues: {newMessage: ''}});
 
   const onSubmit = (formData) => {
     dispatch(sendMessage(formData.newMessage))
   }
+
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset({ newMessage: '' });
+    }
+  }, [formState, reset]);
 
   const validateConfig = {
     required: "Ну напиши что-нибудь!",
