@@ -21,7 +21,11 @@ const ModalWindow = ({isActive, setIsActive, children, width}) => {
       className={isActive ? (style.backsheet + ' ' + style.backsheet__active) : `${style.backsheet}`}
       onClick={() => setIsActive()}
       >
-      <div className={isActive ? style.content + ' ' + style.content__active : style.content} style={{width: `${width}px`}} onClick={evt => evt.stopPropagation()}>
+      <div
+        className={isActive ? style.content + ' ' + style.content__active : style.content}
+        style={{width: `${width}px`}}
+        onClick={evt => evt.stopPropagation()}
+        >
         {children}
       </div>
     </div>

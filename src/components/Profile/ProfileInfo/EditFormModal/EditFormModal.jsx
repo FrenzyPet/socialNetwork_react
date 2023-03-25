@@ -1,77 +1,53 @@
-import { Field, Form } from 'react-final-form';
+import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile } from '../../../../redux/profile-reducer';
 import ModalWindow from '../../../common/ModalWindow/ModalWindow';
 import style from './EditFormModal.module.css'
 
+const FormField = ({ keyName, placeholder, type = "text", register, required, isContact = false }) => {
+  return (
+    <div className={style.field__wrapper}>
+      <label className={style.form__label} htmlFor={keyName}>{`${placeholder}:`}</label>
+      <input {...register(keyName, {required})} className={style.form__input} type={type} id={keyName} name={keyName} placeholder={placeholder} />
+    </div>
+  )
+}
+
 const EditFormModal = ( { isEditFormModal, setEditFormModal }) => {
-  const dispatch = useDispatch()
   const profile = useSelector(state => state.profilePage.profile)
+  const dispatch = useDispatch()
+  const { handleSubmit, register } = useForm({defaultValues: profile})
  
   const onSubmit = (formData) => {
-    console.log(formData)
     setEditFormModal(false)
     dispatch(updateProfile(formData))
   }
 
   return (
     <ModalWindow isActive={isEditFormModal} setIsActive={setEditFormModal} width='500'>
-      <Form
-        initialValues={profile}
-        onSubmit={onSubmit}
-        render={({ handleSubmit }) => (
-          <form className={style.form} onSubmit={handleSubmit}>
-            <div className={style.titleWrapper}>
-              <h1 className={style.title}>Редактировать профиль</h1>
-              <div className={style.buttonWrapper}>
-                <button className={style.editButton} type="submit">Сохранить</button>
-                <button className={style.closeButton} onClick={() => setEditFormModal(false)} type="button"/>
-              </div>
-            </div>
-            <div className={style.section}>
-              <h2 className={style.subtitle}>Общее</h2>
-              <label className={style.form__label}>
-                <span className={style.form__labelText}>Полное имя:</span>
-                <Field className={style.form__input} name="fullName" component="input" placeholder="Полное имя" />
-              </label>
-              <label className={style.form__label}>
-                <span className={style.form__labelText}>Обо мне:</span>
-                <Field className={style.form__input} name="aboutMe" component="input" placeholder="Обо мне" />
-              </label>
-            </div>
-            <div className={style.section}>
-              <h2 className={style.subtitle}>Контакты</h2>
-              <label className={style.form__label}>
-                <span className={style.form__labelText}>facebook:</span>
-                <Field className={style.form__input} name="contacts.facebook" component="input" placeholder="facebook" />
-              </label>
-              <label className={style.form__label}>
-                <span className={style.form__labelText}>github:</span>
-                <Field className={style.form__input} name="contacts.github" component="input" placeholder="github" />
-              </label>
-              <label className={style.form__label}>
-                <span className={style.form__labelText}>instagram:</span>
-                <Field className={style.form__input} name="contacts.instagram" component="input" placeholder="instagram" />
-              </label>
-              <label className={style.form__label}>
-                <span className={style.form__labelText}>twitter:</span>
-                <Field className={style.form__input} name="contacts.twitter" component="input" placeholder="twitter" />
-              </label>
-            </div>
-            <div className={style.section}>
-              <h2 className={style.subtitle}>Работа</h2>
-              <label className={style.form__label}>
-                <span className={style.form__labelText}>Ищу работу:</span>
-                <Field className={style.form__input + ' ' + style.form__input__checkbox} name="lookingForAJob" component="input" type="checkbox"/>
-              </label>
-              <label className={style.form__label}>
-                <span className={style.form__labelText}>Стек:</span>
-                <Field className={style.form__input} name="lookingForAJobDescription" component="textarea" placeholder="Стек технологий" />
-              </label>
-            </div>
-          </form>
-        )}
-      />
+      <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={style.titleWrapper}>
+          <h1 className={style.title}>Редактировать профиль</h1>
+          <div className={style.buttonWrapper}>
+            <button className={style.saveButton} type="submit">Сохранить</button>
+            <button className={style.closeButton} onClick={() => setEditFormModal(false)} type="button"/>
+          </div>
+        </div>
+        <div className={style.section}>
+          <h2 className={style.subtitle}>Общее</h2>
+          <FormField register={register} required keyName="fullName" placeholder="Полное имя"/>
+          <FormField register={register} required keyName="aboutMe" placeholder="Обо мне"/>
+        </div>
+        <div className={style.section}>
+          <h2 className={style.subtitle}>Контакты</h2>
+          { Object.keys(profile.contacts).map(item => <FormField register={register} key={item} keyName={`contacts.${item}`} placeholder={item}/>) }
+        </div>
+        <div className={style.section}>
+          <h2 className={style.subtitle}>Работа</h2>
+          <FormField register={register} keyName="lookingForAJob" placeholder="Ищу работу" type="checkbox"/>
+          <FormField register={register} required keyName="lookingForAJobDescription" placeholder="Стек"/>
+        </div>
+      </form>
     </ModalWindow>
   )
 }

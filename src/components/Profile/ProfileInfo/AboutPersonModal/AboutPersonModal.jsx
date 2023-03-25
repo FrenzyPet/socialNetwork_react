@@ -35,10 +35,11 @@ const AboutPersonModal = ({ isAboutModal, setAboutModal }) => {
         </div>
         <div className={style.section}>
           <h2 className={style.subtitle}>Контакты</h2>
-          <InfoField name='facebook:' value={contacts.facebook || 'Не указано'}/>
-          <InfoField name='github:' value={contacts.github || 'Не указано'}/>
-          <InfoField name='instagram:' value={contacts.instagram || 'Не указано'}/>
-          <InfoField name='twitter:' value={contacts.twitter || 'Не указано'}/>
+          {Object.keys(contacts).map(item => {
+            return (
+              <InfoField key={item} name={`${item}:`} value={contacts[item] || "не указано"}/>
+            )
+          })}
         </div>
         <div className={style.section}>
           <h2 className={style.subtitle}>Карьера</h2>
