@@ -22,9 +22,10 @@ const Login = () => {
 const LoginForm = () => {
   const dispatch = useDispatch()
   const { register, handleSubmit, setError, formState: { errors } } = useForm()
+  const captchaUrl = useSelector(state => state.auth.captchaUrl)
 
-  const onSubmit = (formData) => {
-    dispatch(logIn(formData.email, formData.password, formData.rememberMe, setError))
+  const onSubmit = ({ email, password, rememberMe, captcha }) => {
+    dispatch(logIn(email, password, rememberMe, captcha, setError))
   }
 
   // console.log('STATE ERROR', errors)
@@ -33,7 +34,7 @@ const LoginForm = () => {
     <form className={style.login__form} onSubmit={handleSubmit(onSubmit)}>
       <label className={style.form__label}>
         <input
-          {...register('email', {required : "Обязательное поле"})}
+          {...register('email', {required : "Назови себя, странник интернета"})}
           type="email"
           className={style.form__input}
           placeholder="Введите email"
@@ -42,18 +43,30 @@ const LoginForm = () => {
       </label>
       <label className={style.form__label}>
         <input
-          {...register('password', {required : "Обязательное поле"})}
+          {...register('password', {required : "Предъявите пароль, уважаемый"})}
           type="password"
           className={style.form__input}
           placeholder="Введите пароль"
         />
-        {errors.password && <span className={style.error}>{errors.email.message}</span>}
+        {errors.password && <span className={style.error}>{errors.password.message}</span>}
       </label>
       <label className={style.form__label + ' ' + style.form__label__checkbox}>
         <input {...register('rememberMe')} type="checkbox" className={style.form__input__checkbox}/>
         <span className={style.checkbox__mark}></span>
         <span className={style.checkbox__text}>запомнить меня</span>
       </label>
+      { captchaUrl &&
+        <label className={style.form__label__captcha}>
+          <img className={style.captchaImage} src={captchaUrl} alt="captcha" />
+          <input
+            {...register('captcha', {required : "Без каптчи не войдешь, сорян"})}
+            type="password"
+            className={style.form__input}
+            placeholder="Введите captcha"
+          />
+          {errors.captcha && <span className={style.error}>{errors.captcha.message}</span>}
+        </label>
+      }
       <button className={style.form__button} type="submit">Войти</button>
       {errors.root?.serverError?.message && <div className={style.serverError}>{errors.root?.serverError?.message}</div>}
     </form>
