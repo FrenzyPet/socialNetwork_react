@@ -49,12 +49,12 @@ const ProfileInfo = () => {
   return (
     <div className={classes.profileInfo}>
       <div className={classes.info}>
-        <div className={classes.avatar} onClick={onPhotoClick}>
+        <div className={classes.avatar + ' ' + (match.params.userID ? classes.avatar__notOwner : '')} onClick={onPhotoClick}>
           <img className={classes.photo} src={profile.photos.large || avatar} width='100' height='100' alt='profile avatar'></img>
         </div>
         <div className={classes.data}>
           <p className={classes.name}>{profile.fullName}</p>
-          <ProfileStatus status={status} updateStatus={onUpdateStatus}/>
+          <ProfileStatus status={status} updateStatus={onUpdateStatus} isOwner={match.params.userID}/>
           <div className={classes.settings}>
             <div className={classes.detailsWrapper} onClick={() => setAboutModal(true)}>
               <img className={classes.detailsIcon} src={iconInfo} width='12' height='12' alt="icon" />

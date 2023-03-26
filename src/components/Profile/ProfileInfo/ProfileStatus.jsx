@@ -8,7 +8,9 @@ const ProfileStatus = (props) => {
   useEffect( () => setStatus(props.status), [props.status] )
   
   const activateEditMode = () => {
-    setEditMode(true)
+    if (!props.isOwner) {
+      setEditMode(true)
+    }
   }
 
   const deactivateEditMode = () => {
@@ -21,13 +23,13 @@ const ProfileStatus = (props) => {
   }
 
   return (
-    <div className={classes.status__wrapper}>
-      { !editMode && 
+    <div className={classes.status__wrapper + ' ' + (props.isOwner ? classes.status__wrapper__notOwner : '')}>
+      { !editMode &&
         (<div className={classes.statusbar}>
-          <span onDoubleClick={ activateEditMode }>{props.status || "введите статус"}</span>
+          <span onDoubleClick={ activateEditMode }>{props.status || (!props.isOwner ? "введите статус" : null)}</span>
         </div>)
       }
-      { editMode && 
+      { editMode &&
         (<div className={classes.statusbar}>
           <input autoFocus={true}
                  onBlur={ deactivateEditMode }
