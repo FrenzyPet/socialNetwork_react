@@ -32,12 +32,15 @@ export const getUserLogin = () => async (dispatch) => {
   }
 }
 
-export const logIn = (email, password, rememberMe) => async (dispatch) => {
+export const logIn = (email, password, rememberMe, setError) => async (dispatch) => {
   const response = await authAPI.login(email, password, rememberMe)
     if (response.data.resultCode === 0) {
        dispatch(getUserLogin())
     } else {
-      // dispatch(stopSubmit('login', { _error: response.data.messages[0]}))
+      setError('root.serverError', { 
+        type: response.data.resultCode,
+        message: response.data.messages[0]
+      })
     }
 }
 

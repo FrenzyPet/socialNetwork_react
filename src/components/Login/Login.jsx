@@ -21,13 +21,13 @@ const Login = () => {
 
 const LoginForm = () => {
   const dispatch = useDispatch()
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, setError, formState: { errors } } = useForm()
 
   const onSubmit = (formData) => {
-    console.log(formData)
-    dispatch(logIn(formData.email, formData.password, formData.rememberMe))
+    dispatch(logIn(formData.email, formData.password, formData.rememberMe, setError))
   }
-  console.log(errors)
+
+  // console.log('STATE ERROR', errors)
 
   return (
     <form className={style.login__form} onSubmit={handleSubmit(onSubmit)}>
@@ -55,6 +55,7 @@ const LoginForm = () => {
         <span className={style.checkbox__text}>запомнить меня</span>
       </label>
       <button className={style.form__button} type="submit">Войти</button>
+      {errors.root?.serverError?.message && <div className={style.serverError}>{errors.root?.serverError?.message}</div>}
     </form>
   )
 }
