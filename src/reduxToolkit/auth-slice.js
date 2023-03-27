@@ -14,7 +14,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setUserLogin: (state, action) => {
-      state.userID = action.payload.userID
+      state.userID = action.payload.id
       state.login = action.payload.login
       state.email = action.payload.email
       state.isAuth = action.payload.isAuth
@@ -31,7 +31,8 @@ export const getUserLogin = () => async (dispatch) => {
   const data = await authAPI.startAuthentify();
   if (data.resultCode === 0) {
     const { id, login, email } = data.data;
-    dispatch(setUserLogin(id, login, email, true));
+    const payload = {id, login, email, isAuth: true}
+    dispatch(setUserLogin(payload));
   }
 }
 
@@ -63,7 +64,8 @@ export const logIn = (email, password, rememberMe, captcha, setError) => async (
 export const logOut = () => async (dispatch) => {
   const response = await authAPI.logout()
   if (response.data.resultCode === 0) {
-      dispatch(setUserLogin(null, null, null, false))
+      const payload = {id: null, login: null, email: null, isAuth: false}
+      dispatch(setUserLogin(payload))
     }
 }
 

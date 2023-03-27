@@ -16,7 +16,7 @@ const usersSlice = createSlice({
   reducers: {
     followUser: (state, action) => {
       state.usersData = state.usersData.map(user => {
-        if (user.id === action.userID) {
+        if (user.id === action.payload) {
           return {...user, followed: true}
         }
         return user;
@@ -24,7 +24,7 @@ const usersSlice = createSlice({
     },
     unfollowUser: (state, action) => {
       state.usersData = state.usersData.map(user => {
-        if (user.id === action.userID) {
+        if (user.id === action.payload) {
           return {...user, followed: false}
         }
         return user;
@@ -44,8 +44,8 @@ const usersSlice = createSlice({
     },
     toggleFollowingProgress: (state, action) => {
       state.followingInProgress = action.payload.isFetching
-                                    ? [...state.followingInProgress, action.userID]
-                                    : state.followingInProgress.filter(item => item !== action.userID)
+                                    ? [...state.followingInProgress, action.payload.userID]
+                                    : state.followingInProgress.filter(item => item !== action.payload.userID)
     },
   }
 })

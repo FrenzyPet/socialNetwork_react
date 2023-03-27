@@ -3,9 +3,9 @@ import { profileAPI } from "../api/api";
 
 const initialState = {
   postsData: [
-    { message: 'Please, kill me!', id: 1, likeCount: 10},
-    { message: 'Everything fucked me.', id: 2, likeCount: 20},
-    { message: 'I dont want to live =(', id: 3, likeCount: 30}
+    { message: 'Hello, my name Artem.', id: 1, likeCount: 10},
+    { message: 'I am junior react developer.', id: 2, likeCount: 20},
+    { message: 'Its my social network developed with using react, redux toolkit, react-router dom, axios, react-hook-form.', id: 3, likeCount: 30}
   ],
   profile: null,
   status: ''

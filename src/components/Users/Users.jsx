@@ -1,13 +1,13 @@
-import classes from './Users.module.css';
-import User from './User/User';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { requestUsers, changePage, followThunk, unfollowThunk } from "../../redux/users-reducer";
+import { useDispatch, useSelector } from 'react-redux';
+import { requestUsers, changePage, followThunk, unfollowThunk } from "../../reduxToolkit/users-slice";
+import { deleteFriend, addFriend } from '../../reduxToolkit/friends-slice';
+import style from './Users.module.css';
+import User from './User/User';
 import Preloader from "../common/Preloader/Preloader";
 import Pagination from '../common/Pagination/Pagination';
-import { deleteFriend, addFriend } from '../../redux/friends-reducer';
 
-const Users = (props) => {
+const Users = () => {
   const { 
     usersData,
     pageSize,
@@ -53,17 +53,17 @@ const Users = (props) => {
 
   return (<>
     {isFetching ? <Preloader/> : null}
-    <div className={classes.users}>
+    <div className={style.users}>
       <Pagination totalCount={totalCount}
                   pageSize={pageSize}
                   currentPage={currentPage}
                   onPageChanged={onPageChanged}
       />
-      <form className={classes.users__form} action="">
-        <input className={classes.form__input} type="text" placeholder="Введите имя пользователя"/>
-        <button className={classes.form__button} type='submit'>Найти друзей</button>
+      <form className={style.users__form} action="">
+        <input className={style.form__input} type="text" placeholder="Введите имя пользователя"/>
+        <button className={style.form__button} type='submit'>Найти друзей</button>
       </form>
-      <ul className={classes.users__list}>
+      <ul className={style.users__list}>
         { usersElement }
       </ul>
     </div>

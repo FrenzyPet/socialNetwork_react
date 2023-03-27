@@ -1,15 +1,14 @@
-import Preloader from '../../common/Preloader/Preloader';
-import classes from './ProfileInfo.module.css';
-import avatar from '../../../assets/images/user-avatar.png';
-import ProfileStatus from './ProfileStatus';
+import { useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { getUserProfile, getStatus, updateStatus } from "../../../redux/profile-reducer";
+import { getUserProfile, getStatus, updateStatus } from "../../../reduxToolkit/profile-slice";
+import style from './ProfileInfo.module.css';
+import Preloader from '../../common/Preloader/Preloader';
+import ProfileStatus from './ProfileStatus';
 import PhotoModal from './PhotoModal/PhotoModal';
-import { useState } from 'react';
 import AboutPersonModal from './AboutPersonModal/AboutPersonModal';
 import EditFormModal from './EditFormModal/EditFormModal';
+import avatar from '../../../assets/images/user-avatar.png';
 import iconInfo from '../../../assets/images/info-icon.svg'
 import iconSettings from '../../../assets/images/settings-icon.svg'
 
@@ -47,23 +46,23 @@ const ProfileInfo = () => {
   }
 
   return (
-    <div className={classes.profileInfo}>
-      <div className={classes.info}>
-        <div className={classes.avatar + ' ' + (match.params.userID ? classes.avatar__notOwner : '')} onClick={onPhotoClick}>
-          <img className={classes.photo} src={profile.photos.large || avatar} width='100' height='100' alt='profile avatar'></img>
+    <div className={style.profileInfo}>
+      <div className={style.info}>
+        <div className={style.avatar + ' ' + (match.params.userID ? style.avatar__notOwner : '')} onClick={onPhotoClick}>
+          <img className={style.photo} src={profile.photos.large || avatar} width='100' height='100' alt='profile avatar'></img>
         </div>
-        <div className={classes.data}>
-          <p className={classes.name}>{profile.fullName}</p>
+        <div className={style.data}>
+          <p className={style.name}>{profile.fullName}</p>
           <ProfileStatus status={status} updateStatus={onUpdateStatus} isOwner={match.params.userID}/>
-          <div className={classes.settings}>
-            <div className={classes.detailsWrapper} onClick={() => setAboutModal(true)}>
-              <img className={classes.detailsIcon} src={iconInfo} width='12' height='12' alt="icon" />
-              <span className={classes.detailsTitle}>Подробнее</span>
+          <div className={style.settings}>
+            <div className={style.detailsWrapper} onClick={() => setAboutModal(true)}>
+              <img className={style.detailsIcon} src={iconInfo} width='12' height='12' alt="icon" />
+              <span className={style.detailsTitle}>Подробнее</span>
             </div>
            { !match.params.userID &&
-              <div className={classes.detailsWrapper} onClick={() => setEditFormModal(true)}>
-                <img className={classes.detailsIcon} src={iconSettings} width='12' height='12' alt="icon" />
-                <span className={classes.detailsTitle}>Редактировать профиль</span>
+              <div className={style.detailsWrapper} onClick={() => setEditFormModal(true)}>
+                <img className={style.detailsIcon} src={iconSettings} width='12' height='12' alt="icon" />
+                <span className={style.detailsTitle}>Редактировать профиль</span>
               </div>
             }
           </div>

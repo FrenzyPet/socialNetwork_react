@@ -10,7 +10,7 @@ const friendsSlice = createSlice({
   initialState,
   reducers: {
     setFriends: (state, action) => {
-      state.friendsData.concat(action.payload)
+      state.friendsData = state.friendsData.concat(action.payload)
     },
     addFriend: (state, action) => {
       state.friendsData.push(action.payload)

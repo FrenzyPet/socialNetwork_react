@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { initializeApp } from './redux/app-reducer';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { initializeApp } from './reduxToolkit/app-slice';
 import classes from './App.module.css';
 import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
 import MyFriends from './components/MyFriends/MyFriends';
-import { Routes, Route, Navigate } from 'react-router-dom';
 import Preloader from './components/common/Preloader/Preloader';
 import CheckAuth from './components/Layout/CheckAuth';
 import Profile from './components/Profile/Profile';

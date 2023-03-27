@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateProfile } from '../../../../redux/profile-reducer';
+import { updateProfile } from '../../../../reduxToolkit/profile-slice';
 import ModalWindow from '../../../common/ModalWindow/ModalWindow';
 import style from './EditFormModal.module.css'
 

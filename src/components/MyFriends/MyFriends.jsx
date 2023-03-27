@@ -2,7 +2,7 @@ import classes from './MyFriends.module.css';
 import Friend from './Friend/Friend';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { requestFriends } from '../../redux/friends-reducer';
+import { requestFriends } from '../../reduxToolkit/friends-slice';
 
 const MyFriends = () => {
   const friendsData = useSelector(state => state.friendsPage.friendsData)

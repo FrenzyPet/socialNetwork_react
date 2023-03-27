@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { updatePhoto } from '../../../../redux/profile-reducer'
+import { updatePhoto } from '../../../../reduxToolkit/profile-slice'
 import style from './PhotoModal.module.css'
 import ModalWindow from '../../../common/ModalWindow/ModalWindow'
 

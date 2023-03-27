@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { logOut } from '../../redux/auth-reducer';
+import { logOut } from '../../reduxToolkit/auth-slice';
 import classes from './Header.module.css';
 
 const Header = () => {

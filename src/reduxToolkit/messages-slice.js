@@ -19,7 +19,12 @@ const messagesSlice = createSlice({
   initialState,
   reducers: {
     sendMessage: (state, action) => {
-      state.messagesData.push(action.payload)
+      const newMessage = {
+        text: action.payload,
+        id: state.messagesData.length + 1,
+        isMine: true
+      }
+      state.messagesData.push(newMessage)
     },
   }
 })

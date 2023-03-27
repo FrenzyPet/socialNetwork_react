@@ -1,6 +1,6 @@
+import { useSelector } from 'react-redux';
 import classes from './Post.module.css';
 import defaultAvatar from '../../../../assets/images/user-avatar.png';
-import { useSelector } from 'react-redux';
 
 const Post = (props) => {
 

@@ -1,10 +1,10 @@
-import style from './Dialogs.module.css';
-import DialogItem from './DialogsItem/DialogsItem';
-import Message from './Message/Message';
-import { sendMessage } from '../../redux/message-reducer';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
+import { sendMessage } from '../../reduxToolkit/messages-slice';
+import style from './Dialogs.module.css';
+import Message from './Message/Message';
+import DialogItem from './DialogsItem/DialogsItem';
 
 const Dialogs = () => {
   const { dialogsData, messagesData } = useSelector(state => state.messagesPage)

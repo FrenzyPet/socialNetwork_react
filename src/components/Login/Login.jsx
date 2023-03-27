@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import style from './Login.module.css';
-import { logIn } from '../../redux/auth-reducer';
 import { useForm } from 'react-hook-form';
+import { logIn } from '../../reduxToolkit/auth-slice';
+import style from './Login.module.css';
 
 const Login = () => {
   const isAuth = useSelector(state => state.auth.isAuth)
@@ -25,10 +25,9 @@ const LoginForm = () => {
   const captchaUrl = useSelector(state => state.auth.captchaUrl)
 
   const onSubmit = ({ email, password, rememberMe, captcha }) => {
+    debugger
     dispatch(logIn(email, password, rememberMe, captcha, setError))
   }
-
-  // console.log('STATE ERROR', errors)
 
   return (
     <form className={style.login__form} onSubmit={handleSubmit(onSubmit)}>

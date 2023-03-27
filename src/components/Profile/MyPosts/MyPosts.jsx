@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { addPost } from '../../../reduxToolkit/profile-slice';
 import style from './MyPosts.module.css'
 import Post from './Post/Post';
-import { useDispatch, useSelector } from 'react-redux';
-import { addPost } from '../../../redux/profile-reducer';
-import { useForm } from 'react-hook-form';
 
 const MyPosts = () => {
   const postsData = useSelector(state => state.profilePage.postsData)
