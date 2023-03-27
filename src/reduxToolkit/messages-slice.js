@@ -1,22 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: 0,
+  dialogsData: [
+    { name: 'Artem', id: '001' },
+    { name: 'Andrey', id: '002' },
+    { name: 'Pavel', id: '003' }
+  ],
+  messagesData: [
+    { text: 'Привет', id: '0001', isMine: false },
+    { text: 'Сможешь скинуть на карту 5к рублей?', id: '0002', isMine: false },
+    { text: 'Очень нужно, срочно', id: '0003', isMine: false },
+    { text: 'Тебя взломали?', id: '0004', isMine: true },
+  ],
 }
 
 const messagesSlice = createSlice({
   name: 'messages',
   initialState,
   reducers: {
-    red1: (state) => {
-      state.value += 1
+    sendMessage: (state, action) => {
+      state.messagesData.push(action.payload)
     },
-    red2: (state) => {
-      state.value -= 1
-    }
   }
 })
 
-export const { red1, red2 } = messagesSlice.actions
+export const { sendMessage } = messagesSlice.actions
 
 export default messagesSlice.reducer;

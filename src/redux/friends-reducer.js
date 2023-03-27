@@ -4,14 +4,6 @@ const SET_FRIENDS = 'frenzyPulse/friends/SET_FRIENDS'
 const ADD_FRIEND = 'frenzyPulse/friends/ADD_FRIEND'
 const DELETE_FRIEND = 'frenzyPulse/friends/DELETE_FRIEND'
 
-// const initialState = {
-//   friendsData: [
-//         { id: '001', name: 'Маша', photos: { small: 'http://android-obzor.com/wp-content/uploads/2022/03/1-43-1.jpg', large: ''}  },
-//         { id: '002', name: 'Катя', photos: { small: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-VfKoaIJI1jRcyFKFNa3cnR3AE0Eelh0Anw&usqp=CAU', large: ''}  },
-//         { id: '003', name: 'Паша', photos: { small: 'https://fanibani.ru/wp-content/uploads/2021/11/400-anime-avatarok-dlya-vk-ks-go-ili-stim-1.png', large: ''}  },
-//       ]
-// }
-
 const initialState = {
   friendsData: []
 }

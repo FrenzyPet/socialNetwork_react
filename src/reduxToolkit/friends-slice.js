@@ -1,22 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { usersAPI } from "../api/api";
 
 const initialState = {
-  value: 0,
+  friendsData: []
 }
 
 const friendsSlice = createSlice({
   name: 'friends',
   initialState,
   reducers: {
-    red1: (state) => {
-      state.value += 1
+    setFriends: (state, action) => {
+      state.friendsData.concat(action.payload)
     },
-    red2: (state) => {
-      state.value -= 1
-    }
+    addFriend: (state, action) => {
+      state.friendsData.push(action.payload)
+    },
+    deleteFriend: (state, action) => {
+      state.friendsData.filter(item => item.id !== action.payload)
+    },
   }
 })
 
-export const { red1, red2 } = friendsSlice.actions
+export const { setFriends, addFriend, deleteFriend } = friendsSlice.actions
+
+export const requestFriends = () => async (dispatch) => { /* Thunk */
+  const data = await usersAPI.getUsers(1, 20);
+  dispatch(setFriends(data.items.filter((item) => item.followed)));
+}
 
 export default friendsSlice.reducer;
