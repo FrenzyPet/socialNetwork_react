@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/react-learn/static/css/main.a752d7a3.css",
-    "main.js": "/react-learn/static/js/main.a030b07b.js",
+    "main.css": "/react-learn/static/css/main.9217a414.css",
+    "main.js": "/react-learn/static/js/main.5920128d.js",
     "static/media/user-avatar.png": "/react-learn/static/media/user-avatar.8bf7b611fd1c3fcb1bd9.png",
     "static/media/settings-icon.svg": "/react-learn/static/media/settings-icon.61941a55106d787160a4d3a51ad94127.svg",
     "static/media/info-icon.svg": "/react-learn/static/media/info-icon.edf49a52141f8e731e40f021dfe8b8d5.svg",
     "index.html": "/react-learn/index.html",
     "static/media/preloader.svg": "/react-learn/static/media/preloader.9abf2287ebfeae7c663211398af9fa3e.svg",
-    "main.a752d7a3.css.map": "/react-learn/static/css/main.a752d7a3.css.map",
-    "main.a030b07b.js.map": "/react-learn/static/js/main.a030b07b.js.map"
+    "main.9217a414.css.map": "/react-learn/static/css/main.9217a414.css.map",
+    "main.5920128d.js.map": "/react-learn/static/js/main.5920128d.js.map"
   },
   "entrypoints": [
-    "static/css/main.a752d7a3.css",
-    "static/js/main.a030b07b.js"
+    "static/css/main.9217a414.css",
+    "static/js/main.5920128d.js"
   ]
 }
