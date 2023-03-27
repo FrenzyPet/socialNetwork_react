@@ -1,22 +1,25 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getUserLogin } from "./auth-slice";
 
 const initialState = {
-  value: 0,
+  isInit: false
 }
 
 const appSlice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    red1: (state) => {
-      state.value += 1
+    initialize: (state) => {
+      state.isInit = true
     },
-    red2: (state) => {
-      state.value -= 1
-    }
   }
 })
 
-export const { red1, red2 } = appSlice.actions
+export const { initialize } = appSlice.actions
+
+export const initializeApp = () => (dispatch) => {
+  const promise = dispatch(getUserLogin())
+  promise.then(() => dispatch(initialize()))
+}
 
 export default appSlice.reducer;
