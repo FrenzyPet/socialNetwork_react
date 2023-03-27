@@ -2,7 +2,6 @@ import classes from './Friend.module.css';
 import avatar from '../../../assets/images/user-avatar.png';
 import { NavLink } from 'react-router-dom';
 
-
 const Friend = (props) => {
   const name = props.name.length > 8 ? `${props.name.slice(0, 8)}...` : props.name
   return (
