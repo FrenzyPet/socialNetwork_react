@@ -5,7 +5,7 @@ import classes from './App.module.css';
 import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
 import MyFriends from './components/MyFriends/MyFriends';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Preloader from './components/common/Preloader/Preloader';
 import CheckAuth from './components/Layout/CheckAuth';
 import Profile from './components/Profile/Profile';
@@ -35,6 +35,7 @@ const App = () => {
       <MyFriends />
       <Routes>
         <Route element={<CheckAuth/>}>
+          <Route path='/' element={<Navigate to="/profile"/>} />
           <Route path='/profile/:userID?' element={<Profile/>} />
           <Route path='/dialogs/*' element={<Dialogs/>} />
           <Route path='/news' element={<News/>} />

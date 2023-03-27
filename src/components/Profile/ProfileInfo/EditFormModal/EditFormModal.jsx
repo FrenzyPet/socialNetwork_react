@@ -4,7 +4,7 @@ import { updateProfile } from '../../../../redux/profile-reducer';
 import ModalWindow from '../../../common/ModalWindow/ModalWindow';
 import style from './EditFormModal.module.css'
 
-const FormField = ({ keyName, placeholder, type = "text", register, required, isContact = false }) => {
+const FormField = ({ keyName, placeholder, type = "text", register, required }) => {
   return (
     <div className={style.field__wrapper}>
       <label className={style.form__label} htmlFor={keyName}>{`${placeholder}:`}</label>
@@ -16,10 +16,10 @@ const FormField = ({ keyName, placeholder, type = "text", register, required, is
 const EditFormModal = ( { isEditFormModal, setEditFormModal }) => {
   const profile = useSelector(state => state.profilePage.profile)
   const dispatch = useDispatch()
-  const { handleSubmit, register, formState: { errors } } = useForm({ defaultValues: profile })
+  const { handleSubmit, register, setError, formState: { errors } } = useForm({ defaultValues: profile })
  
   const onSubmit = async (formData) => {
-    dispatch(updateProfile(formData))
+    dispatch(updateProfile(formData, setError))
     setEditFormModal(false)
   }
 
